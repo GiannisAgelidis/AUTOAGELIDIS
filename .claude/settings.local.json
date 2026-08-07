@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/giannisangelidis/.claude/**)",
+      "Bash(curl -sL https://raw.githubusercontent.com/anthropics/claude-code/main/plugins/frontend-design/skills/frontend-design/SKILL.md)",
+      "Bash(claude mcp *)",
+      "Bash(npx skills *)"
+    ]
+  }
+}

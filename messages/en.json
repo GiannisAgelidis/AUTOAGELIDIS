@@ -1,0 +1,271 @@
+{
+  "brand": {
+    "name": "AUTO AGELIDIS"
+  },
+  "nav": {
+    "home": "Home",
+    "cars": "Cars",
+    "trucks": "Trucks",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "hero": {
+    "eyebrow": "Auto Agelidis · Komotini",
+    "title": "Vehicles with a\nrecorded history.",
+    "subtitle": "We've been buying and selling used cars and trucks in Komotini since 2010 — every vehicle listed with full specifications, no surprises.",
+    "cta": "View vehicles",
+    "ctaSecondary": "Contact us",
+    "stats": {
+      "since": "Since",
+      "sinceValue": "2010",
+      "experience": "Years of experience",
+      "experienceValue": "15+",
+      "location": "Based in",
+      "locationValue": "Komotini"
+    }
+  },
+  "about": {
+    "eyebrow": "About",
+    "title": "A family business, no middlemen.",
+    "body": "Auto Agelidis has been buying and selling used cars and trucks in Komotini since 2010. Every listing comes with full specifications — mileage, engine size, horsepower, condition — so you know exactly what you're buying before you come see it in person.",
+    "points": {
+      "inspected": "Full details on every listing",
+      "tradeIn": "Trade in your current vehicle",
+      "local": "Serving Komotini and Thrace"
+    }
+  },
+  "location": {
+    "eyebrow": "Location",
+    "title": "Come by the showroom",
+    "addressLabel": "Address",
+    "phoneLabel": "Phone",
+    "hoursLabel": "Hours",
+    "hoursValue": "Mon–Fri 09:00–19:00, Sat 09:00–15:00",
+    "directions": "Get directions"
+  },
+  "featured": {
+    "eyebrow": "Available now",
+    "title": "Recent listings",
+    "viewAll": "View all vehicles",
+    "empty": "Available vehicles will appear here soon."
+  },
+  "contact": {
+    "title": "Contact",
+    "name": "Full name",
+    "email": "Email",
+    "phone": "Phone",
+    "message": "Message",
+    "send": "Send",
+    "success": "Your message has been sent.",
+    "error": "Something went wrong. Please try again."
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "contactHeading": "Contact",
+    "navHeading": "Navigate",
+    "followHeading": "Follow us"
+  },
+  "cars": {
+    "pageTitle": "Vehicles",
+    "noResults": "No vehicles match these filters.",
+    "resultsCount": "{count, plural, =0 {No vehicles} one {# vehicle} other {# vehicles}}",
+    "filters": {
+      "title": "Filters",
+      "vehicleType": "Type",
+      "allVehicleTypes": "All",
+      "category": "Category",
+      "allCategories": "All categories",
+      "make": "Make",
+      "allMakes": "All makes",
+      "priceMin": "Price from",
+      "priceMax": "Price to",
+      "yearMin": "Year from",
+      "yearMax": "Year to",
+      "mileageMin": "Mileage from",
+      "mileageMax": "Mileage to",
+      "fuelType": "Fuel",
+      "allFuelTypes": "All fuel types",
+      "transmission": "Transmission",
+      "allTransmissions": "All transmissions",
+      "reset": "Clear filters",
+      "apply": "Apply"
+    },
+    "card": {
+      "priceOnRequest": "Price on request"
+    }
+  },
+  "carDetail": {
+    "close": "Close",
+    "specs": "Specifications",
+    "features": "Features",
+    "description": "Description",
+    "contactAboutThis": "Ask about this vehicle",
+    "fields": {
+      "makeModel": "Make - Model",
+      "trim": "Type / trim",
+      "price": "Price",
+      "condition": "Condition",
+      "category": "Category",
+      "yearMonth": "Year",
+      "mileage": "Mileage",
+      "fuelType": "Fuel",
+      "engineCc": "Engine size",
+      "horsepower": "Horsepower",
+      "transmission": "Transmission",
+      "color": "Color",
+      "upholstery": "Upholstery",
+      "plateStatus": "License plate",
+      "driveType": "Drive type",
+      "airbags": "Airbags",
+      "doors": "Doors",
+      "seats": "Seats"
+    }
+  },
+  "enums": {
+    "vehicleType": {
+      "car": "Car",
+      "truck": "Truck"
+    },
+    "condition": {
+      "new": "New",
+      "used": "Used"
+    },
+    "category": {
+      "hatchback": "Compact / Hatchback",
+      "sedan": "Sedan",
+      "wagon": "Station Wagon",
+      "suv": "SUV / 4x4",
+      "coupe": "Coupe",
+      "cabrio": "Cabrio / Convertible",
+      "van": "Van / Minivan",
+      "pickup": "Pickup",
+      "truck_3_5": "Truck up to 3.5t",
+      "truck_7_5": "Truck up to 7.5t"
+    },
+    "fuelType": {
+      "petrol": "Petrol",
+      "diesel": "Diesel",
+      "hybrid": "Hybrid",
+      "electric": "Electric",
+      "lpg": "LPG",
+      "cng": "CNG"
+    },
+    "transmission": {
+      "manual": "Manual",
+      "automatic": "Automatic",
+      "semi_automatic": "Semi-automatic"
+    },
+    "driveType": {
+      "fwd": "Front-wheel drive (FWD)",
+      "rwd": "Rear-wheel drive (RWD)",
+      "awd": "All-wheel drive (AWD)"
+    },
+    "color": {
+      "white": "White",
+      "black": "Black",
+      "silver": "Silver",
+      "grey": "Grey",
+      "blue": "Blue",
+      "red": "Red",
+      "green": "Green",
+      "yellow": "Yellow",
+      "orange": "Orange",
+      "brown": "Brown",
+      "beige": "Beige",
+      "gold": "Gold",
+      "purple": "Purple",
+      "other": "Other"
+    },
+    "upholstery": {
+      "fabric": "Fabric",
+      "leather": "Leather",
+      "part_leather": "Part leather"
+    },
+    "plateStatus": {
+      "with_plates": "With plates",
+      "without_plates": "Without plates",
+      "unknown": "Unknown"
+    },
+    "features": {
+      "abs": "ABS",
+      "airbags": "Airbags",
+      "ac": "A/C",
+      "alloy_wheels": "Alloy wheels",
+      "bluetooth": "Bluetooth",
+      "central_locking": "Central locking",
+      "cruise_control": "Cruise control",
+      "electric_mirrors": "Electric mirrors",
+      "electric_windows": "Electric windows",
+      "immobilizer": "Immobilizer",
+      "navigation": "Navigation",
+      "parking_sensors": "Parking sensors",
+      "power_steering": "Power steering",
+      "rear_camera": "Rear camera",
+      "service_book": "Service book",
+      "sunroof": "Sunroof",
+      "turbo": "Turbo",
+      "leather_seats": "Leather seats",
+      "no_accident": "No accident history",
+      "trade_in_accepted": "Trade-in accepted"
+    }
+  },
+  "admin": {
+    "login": {
+      "title": "Admin login",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Log in",
+      "error": "Invalid credentials."
+    },
+    "dashboard": {
+      "title": "Admin dashboard",
+      "addCar": "Add vehicle",
+      "edit": "Edit",
+      "delete": "Delete",
+      "confirmDelete": "Delete this vehicle and all its photos?",
+      "logout": "Log out",
+      "account": "Account"
+    },
+    "account": {
+      "title": "Change password",
+      "signedInAs": "Signed in as",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm password",
+      "submit": "Update password",
+      "success": "Password updated successfully.",
+      "error": "Something went wrong. Please try again.",
+      "mismatch": "Passwords don't match.",
+      "tooShort": "Password must be at least 8 characters.",
+      "backToDashboard": "Back to dashboard"
+    },
+    "form": {
+      "title": "Vehicle details",
+      "photos": "Photos",
+      "uploadPhotos": "Upload photos",
+      "dragToReorder": "Drag to reorder — the first photo is the cover",
+      "save": "Save",
+      "cancel": "Cancel",
+      "descriptionEn": "Description (English)",
+      "descriptionGr": "Description (Greek)",
+      "trimEn": "Type / trim (English)",
+      "trimGr": "Type / trim (Greek)",
+      "make": "Make",
+      "model": "Model",
+      "year": "Year",
+      "month": "Month",
+      "vehicleType": "Vehicle type",
+      "colorMetallic": "Metallic color",
+      "select": "Select",
+      "removePhoto": "Remove",
+      "uploading": "Uploading… {percent}%",
+      "createSuccess": "Vehicle added successfully.",
+      "createError": "Something went wrong. Please try again.",
+      "sectionBasic": "Basic info",
+      "sectionSpecs": "Specifications",
+      "sectionAppearance": "Appearance",
+      "sectionDescription": "Description",
+      "sectionFeatures": "Features",
+      "sectionPhotos": "Photos"
+    }
+  }
+}

@@ -1,0 +1,271 @@
+{
+  "brand": {
+    "name": "AUTO AGELIDIS"
+  },
+  "nav": {
+    "home": "Αρχική",
+    "cars": "Αυτοκίνητα",
+    "trucks": "Φορτηγά",
+    "about": "Σχετικά",
+    "contact": "Επικοινωνία"
+  },
+  "hero": {
+    "eyebrow": "Auto Agelidis · Κομοτηνή",
+    "title": "Οχήματα με\nκαταγεγραμμένη ιστορία.",
+    "subtitle": "Αγοράζουμε και πουλάμε μεταχειρισμένα αυτοκίνητα και φορτηγά στην Κομοτηνή από το 2010 — κάθε όχημα με πλήρη χαρακτηριστικά, καμία έκπληξη.",
+    "cta": "Δείτε τα οχήματα",
+    "ctaSecondary": "Επικοινωνία",
+    "stats": {
+      "since": "Από το",
+      "sinceValue": "2010",
+      "experience": "Χρόνια εμπειρίας",
+      "experienceValue": "15+",
+      "location": "Έδρα",
+      "locationValue": "Κομοτηνή"
+    }
+  },
+  "about": {
+    "eyebrow": "Σχετικά",
+    "title": "Ένα οικογενειακό μαγαζί, χωρίς μεσάζοντες.",
+    "body": "Η Auto Agelidis αγοράζει και πουλάει μεταχειρισμένα αυτοκίνητα και φορτηγά στην Κομοτηνή από το 2010. Κάθε αγγελία έχει πλήρη τεχνικά χαρακτηριστικά — χιλιόμετρα, κυβικά, ιπποδύναμη, κατάσταση — ώστε να ξέρετε ακριβώς τι αγοράζετε πριν έρθετε να το δείτε από κοντά.",
+    "points": {
+      "inspected": "Πλήρη στοιχεία σε κάθε αγγελία",
+      "tradeIn": "Ανταλλαγή με το παλιό σας όχημα",
+      "local": "Εξυπηρέτηση σε Κομοτηνή και Θράκη"
+    }
+  },
+  "location": {
+    "eyebrow": "Τοποθεσία",
+    "title": "Περάστε από το κατάστημα",
+    "addressLabel": "Διεύθυνση",
+    "phoneLabel": "Τηλέφωνο",
+    "hoursLabel": "Ωράριο",
+    "hoursValue": "Δευ–Παρ 09:00–19:00, Σάβ 09:00–15:00",
+    "directions": "Οδηγίες στον χάρτη"
+  },
+  "featured": {
+    "eyebrow": "Διαθέσιμα τώρα",
+    "title": "Πρόσφατες καταχωρήσεις",
+    "viewAll": "Δείτε όλα τα οχήματα",
+    "empty": "Σύντομα εδώ θα βλέπετε τα διαθέσιμα οχήματα."
+  },
+  "contact": {
+    "title": "Επικοινωνία",
+    "name": "Ονοματεπώνυμο",
+    "email": "Email",
+    "phone": "Τηλέφωνο",
+    "message": "Μήνυμα",
+    "send": "Αποστολή",
+    "success": "Το μήνυμά σας εστάλη επιτυχώς.",
+    "error": "Κάτι πήγε στραβά. Δοκιμάστε ξανά."
+  },
+  "footer": {
+    "rights": "Με επιφύλαξη παντός δικαιώματος.",
+    "contactHeading": "Επικοινωνία",
+    "navHeading": "Πλοήγηση",
+    "followHeading": "Ακολουθήστε μας"
+  },
+  "cars": {
+    "pageTitle": "Οχήματα",
+    "noResults": "Δεν βρέθηκαν οχήματα με αυτά τα κριτήρια.",
+    "resultsCount": "{count, plural, =0 {Κανένα όχημα} one {# όχημα} other {# οχήματα}}",
+    "filters": {
+      "title": "Φίλτρα",
+      "vehicleType": "Τύπος",
+      "allVehicleTypes": "Όλα",
+      "category": "Κατηγορία",
+      "allCategories": "Όλες οι κατηγορίες",
+      "make": "Μάρκα",
+      "allMakes": "Όλες οι μάρκες",
+      "priceMin": "Τιμή από",
+      "priceMax": "Τιμή έως",
+      "yearMin": "Έτος από",
+      "yearMax": "Έτος έως",
+      "mileageMin": "Χιλιόμετρα από",
+      "mileageMax": "Χιλιόμετρα έως",
+      "fuelType": "Καύσιμο",
+      "allFuelTypes": "Όλα τα καύσιμα",
+      "transmission": "Σασμάν",
+      "allTransmissions": "Όλα τα σασμάν",
+      "reset": "Καθαρισμός φίλτρων",
+      "apply": "Εφαρμογή"
+    },
+    "card": {
+      "priceOnRequest": "Τιμή κατόπιν επικοινωνίας"
+    }
+  },
+  "carDetail": {
+    "close": "Κλείσιμο",
+    "specs": "Χαρακτηριστικά",
+    "features": "Ιδιαιτερότητες",
+    "description": "Περιγραφή",
+    "contactAboutThis": "Ρωτήστε για αυτό το όχημα",
+    "fields": {
+      "makeModel": "Μάρκα - Μοντέλο",
+      "trim": "Τύπος / έκδοση",
+      "price": "Τιμή",
+      "condition": "Κατάσταση",
+      "category": "Κατηγορία",
+      "yearMonth": "Χρονολογία",
+      "mileage": "Χιλιόμετρα",
+      "fuelType": "Καύσιμο",
+      "engineCc": "Κυβικά",
+      "horsepower": "Ιπποδύναμη",
+      "transmission": "Σασμάν",
+      "color": "Χρώμα",
+      "upholstery": "Επένδυση σαλονιού",
+      "plateStatus": "Πινακίδα",
+      "driveType": "Κίνηση τροχών",
+      "airbags": "Αερόσακοι",
+      "doors": "Πόρτες",
+      "seats": "Θέσεις επιβατών"
+    }
+  },
+  "enums": {
+    "vehicleType": {
+      "car": "Αυτοκίνητο",
+      "truck": "Φορτηγό"
+    },
+    "condition": {
+      "new": "Καινούργιο",
+      "used": "Μεταχειρισμένο"
+    },
+    "category": {
+      "hatchback": "Κόμπακτ / Hatchback",
+      "sedan": "Sedan",
+      "wagon": "Station Wagon",
+      "suv": "SUV / 4x4",
+      "coupe": "Coupe",
+      "cabrio": "Cabrio / Καμπριολέ",
+      "van": "Van / Minivan",
+      "pickup": "Pickup",
+      "truck_3_5": "Φορτηγό έως 3.5t",
+      "truck_7_5": "Φορτηγό έως 7.5t"
+    },
+    "fuelType": {
+      "petrol": "Βενζίνη",
+      "diesel": "Πετρέλαιο",
+      "hybrid": "Υβριδικό",
+      "electric": "Ηλεκτρικό",
+      "lpg": "Υγραέριο (LPG)",
+      "cng": "Φυσικό αέριο (CNG)"
+    },
+    "transmission": {
+      "manual": "Χειροκίνητο",
+      "automatic": "Αυτόματο",
+      "semi_automatic": "Ημιαυτόματο"
+    },
+    "driveType": {
+      "fwd": "Προσθιοκίνητο (FWD)",
+      "rwd": "Οπισθοκίνητο (RWD)",
+      "awd": "Τετρακίνητο (AWD)"
+    },
+    "color": {
+      "white": "Λευκό",
+      "black": "Μαύρο",
+      "silver": "Ασημί",
+      "grey": "Γκρι",
+      "blue": "Μπλε",
+      "red": "Κόκκινο",
+      "green": "Πράσινο",
+      "yellow": "Κίτρινο",
+      "orange": "Πορτοκαλί",
+      "brown": "Καφέ",
+      "beige": "Μπεζ",
+      "gold": "Χρυσό",
+      "purple": "Μωβ",
+      "other": "Άλλο"
+    },
+    "upholstery": {
+      "fabric": "Ύφασμα",
+      "leather": "Δέρμα",
+      "part_leather": "Μερικό δέρμα"
+    },
+    "plateStatus": {
+      "with_plates": "Με πινακίδες",
+      "without_plates": "Χωρίς πινακίδες",
+      "unknown": "Άγνωστη"
+    },
+    "features": {
+      "abs": "ABS",
+      "airbags": "Αερόσακοι",
+      "ac": "Κλιματισμός",
+      "alloy_wheels": "Ζάντες αλουμινίου",
+      "bluetooth": "Bluetooth",
+      "central_locking": "Κεντρικό κλείδωμα",
+      "cruise_control": "Cruise control",
+      "electric_mirrors": "Ηλεκτρικοί καθρέφτες",
+      "electric_windows": "Ηλεκτρικά παράθυρα",
+      "immobilizer": "Immobilizer",
+      "navigation": "Σύστημα πλοήγησης",
+      "parking_sensors": "Αισθητήρες παρκαρίσματος",
+      "power_steering": "Υδραυλικό τιμόνι",
+      "rear_camera": "Κάμερα οπισθοπορείας",
+      "service_book": "Βιβλίο service",
+      "sunroof": "Ηλιοροφή",
+      "turbo": "Turbo",
+      "leather_seats": "Δερμάτινα καθίσματα",
+      "no_accident": "Ατρακάριστο",
+      "trade_in_accepted": "Ανταλλαγή με παλιό δεκτή"
+    }
+  },
+  "admin": {
+    "login": {
+      "title": "Σύνδεση διαχειριστή",
+      "email": "Email",
+      "password": "Κωδικός",
+      "submit": "Σύνδεση",
+      "error": "Λανθασμένα στοιχεία σύνδεσης."
+    },
+    "dashboard": {
+      "title": "Πίνακας διαχείρισης",
+      "addCar": "Προσθήκη οχήματος",
+      "edit": "Επεξεργασία",
+      "delete": "Διαγραφή",
+      "confirmDelete": "Διαγραφή αυτού του οχήματος και όλων των φωτογραφιών του;",
+      "logout": "Αποσύνδεση",
+      "account": "Λογαριασμός"
+    },
+    "account": {
+      "title": "Αλλαγή κωδικού",
+      "signedInAs": "Συνδεδεμένος ως",
+      "newPassword": "Νέος κωδικός",
+      "confirmPassword": "Επιβεβαίωση κωδικού",
+      "submit": "Ενημέρωση κωδικού",
+      "success": "Ο κωδικός ενημερώθηκε επιτυχώς.",
+      "error": "Κάτι πήγε στραβά. Δοκιμάστε ξανά.",
+      "mismatch": "Οι κωδικοί δεν ταιριάζουν.",
+      "tooShort": "Ο κωδικός πρέπει να έχει τουλάχιστον 8 χαρακτήρες.",
+      "backToDashboard": "Πίσω στον πίνακα διαχείρισης"
+    },
+    "form": {
+      "title": "Στοιχεία οχήματος",
+      "photos": "Φωτογραφίες",
+      "uploadPhotos": "Ανέβασμα φωτογραφιών",
+      "dragToReorder": "Σύρετε για αναδιάταξη — η πρώτη είναι η εξώφυλλο",
+      "save": "Αποθήκευση",
+      "cancel": "Ακύρωση",
+      "descriptionEn": "Περιγραφή (Αγγλικά)",
+      "descriptionGr": "Περιγραφή (Ελληνικά)",
+      "trimEn": "Τύπος / έκδοση (Αγγλικά)",
+      "trimGr": "Τύπος / έκδοση (Ελληνικά)",
+      "make": "Μάρκα",
+      "model": "Μοντέλο",
+      "year": "Έτος",
+      "month": "Μήνας",
+      "vehicleType": "Τύπος οχήματος",
+      "colorMetallic": "Μεταλλικό χρώμα",
+      "select": "Επιλέξτε",
+      "removePhoto": "Αφαίρεση",
+      "uploading": "Μεταφόρτωση… {percent}%",
+      "createSuccess": "Το όχημα προστέθηκε επιτυχώς.",
+      "createError": "Κάτι πήγε στραβά. Δοκιμάστε ξανά.",
+      "sectionBasic": "Βασικά στοιχεία",
+      "sectionSpecs": "Τεχνικά χαρακτηριστικά",
+      "sectionAppearance": "Εμφάνιση",
+      "sectionDescription": "Περιγραφή",
+      "sectionFeatures": "Ιδιαιτερότητες",
+      "sectionPhotos": "Φωτογραφίες"
+    }
+  }
+}
