@@ -13,14 +13,14 @@ export default async function About() {
         aria-hidden
         className="pointer-events-none absolute inset-y-0 right-0 hidden w-[40%] items-center justify-end pr-6 md:flex"
       >
-        {/* <IKImage
+         {/* <IKImage
           src="/AutoAgelidis/AUTOAGELIDIS.png"
           alt=""
           width={640}
           height={320}
           transformation={[{ width: 960 }]}
           className="ambient-mark w-full max-w-[480px] opacity-[0.08]"
-        /> */}
+        />  */}
         {/* uncomment this part to show second logo watermark */}
       </div>
 
