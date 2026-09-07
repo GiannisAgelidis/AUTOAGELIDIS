@@ -61,13 +61,13 @@ export default async function CarsPage({
   return (
     <>
       <Header />
-      <main className="flex-1 bg-bg text-ink">
+      <main className="flex-1 bg-paper text-ink">
         <div className="mx-auto w-full max-w-6xl px-6 py-12">
-          <div className="mb-8 flex flex-wrap items-end justify-between gap-3 border-b border-hairline pb-5">
-            <h1 className="text-3xl font-extrabold tracking-[-0.02em]">
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-3 border-b border-line pb-5">
+            <h1 className="text-3xl font-normal tracking-[-0.02em]">
               {t("pageTitle")}
             </h1>
-            <p className="font-mono text-xs uppercase tracking-[0.12em] text-muted">
+            <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-ash">
               {t("resultsCount", { count: filteredCars.length })}
             </p>
           </div>
@@ -75,7 +75,7 @@ export default async function CarsPage({
           <CarFilters availableMakes={availableMakes} />
 
           {filteredCars.length === 0 ? (
-            <p className="py-12 text-center text-sm text-muted">{t("noResults")}</p>
+            <p className="py-12 text-center text-sm text-ash">{t("noResults")}</p>
           ) : (
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {filteredCars.map((car) => (

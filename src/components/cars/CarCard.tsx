@@ -31,9 +31,9 @@ export default function CarCard({ car }: { car: CarWithImages }) {
     <button
       type="button"
       onClick={openDetail}
-      className="group card-lift flex flex-col overflow-hidden rounded-xl border border-hairline bg-surface text-left shadow-[0_1px_2px_rgba(15,23,42,0.05)] hover:border-slate/20 hover:shadow-[0_20px_40px_-16px_rgba(15,23,42,0.25)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal/40"
+      className="group card-quiet flex flex-col border border-line bg-surface text-left hover:border-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
     >
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-surface-dim">
+      <div className="relative aspect-[4/3] w-full overflow-hidden bg-surface-2">
         {cover && (
           <Image
             src={cover.url}
@@ -44,14 +44,14 @@ export default function CarCard({ car }: { car: CarWithImages }) {
           />
         )}
       </div>
-      <div className="flex flex-1 flex-col gap-1.5 p-5">
-        <p className="font-semibold">{title}</p>
-        <p className="font-mono text-xs uppercase tracking-[0.08em] text-muted">
+      <div className="flex flex-1 flex-col gap-2 p-5">
+        <p className="font-medium">{title}</p>
+        <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-ash">
           {car.year}
           {car.month ? `/${car.month}` : ""} · {car.mileage_km.toLocaleString()} km ·{" "}
           {tEnums(`fuelType.${car.fuel_type}`)}
         </p>
-        <p className="mt-auto pt-3 text-xl font-bold tabular-nums text-signal">
+        <p className="mt-auto pt-3 font-mono text-base font-semibold tabular-nums text-ink">
           {car.price
             ? `${Number(car.price).toLocaleString()} €`
             : t("priceOnRequest")}

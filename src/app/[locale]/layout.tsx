@@ -56,7 +56,7 @@ export default async function LocaleLayout({
       lang={locale}
       className={`${sans.variable} ${mono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-bg text-ink">
+      <body className="min-h-full flex flex-col bg-paper text-ink">
         <NextIntlClientProvider messages={messages}>
           <ImageKitProvider urlEndpoint={process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT}>
             {children}

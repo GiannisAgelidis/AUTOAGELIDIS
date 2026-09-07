@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 
 /**
- * Section eyebrow — a short signal-red rule followed by a mono, uppercase label.
- * Used to open every section and to badge small pieces of metadata.
+ * Section eyebrow — a small solid square followed by a mono, uppercase label.
+ * Monochrome: the marker is current text colour, no accent hue.
  */
 export default function Tag({
   children,
@@ -19,17 +19,17 @@ export default function Tag({
   className?: string;
   style?: React.CSSProperties;
 }) {
-  const text = tone === "on-ink" ? "text-on-dark" : "text-ink";
-  const textSize = size === "lg" ? "text-sm" : "text-xs";
+  const text = tone === "on-ink" ? "text-on-ink" : "text-ink";
+  const textSize = size === "lg" ? "text-sm" : "text-[11px]";
 
   return (
     <span
-      className={`inline-flex items-center gap-3 font-mono uppercase tracking-[0.18em] ${textSize} ${text} ${
+      className={`inline-flex items-center gap-3 font-mono uppercase tracking-[0.22em] ${textSize} ${text} ${
         interactive ? "transition-colors" : ""
       } ${className}`}
       style={style}
     >
-      <span aria-hidden className="h-px w-8 shrink-0 bg-signal" />
+      <span aria-hidden className="h-1.5 w-1.5 shrink-0 bg-current" />
       {children}
     </span>
   );

@@ -13,9 +13,9 @@ const INSTAGRAM_URL = "#";
 const FACEBOOK_URL = "#";
 
 const columnHeading =
-  "mb-4 font-mono text-[10px] uppercase tracking-[0.16em] text-on-dark-muted";
+  "mb-4 font-mono text-[10px] uppercase tracking-[0.18em] text-on-ink-dim";
 const linkRow =
-  "flex items-center gap-2.5 text-on-dark/70 transition-colors hover:text-signal";
+  "flex items-center gap-2.5 text-on-ink/65 transition-colors hover:text-on-ink";
 const linkGroup = "flex flex-col items-start gap-3 text-sm";
 
 export default async function Footer() {
@@ -25,7 +25,7 @@ export default async function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-on-dark-line bg-slate text-on-dark">
+    <footer className="border-t border-line-dark bg-ink text-on-ink">
       <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 px-6 py-16 sm:grid-cols-3">
         <div>
           <h3 className={columnHeading}>{t("contactHeading")}</h3>
@@ -48,13 +48,13 @@ export default async function Footer() {
         <div>
           <h3 className={columnHeading}>{t("navHeading")}</h3>
           <nav className={linkGroup}>
-            <Link href="/cars" className="text-on-dark/70 transition-colors hover:text-signal">
+            <Link href="/cars" className="text-on-ink/65 transition-colors hover:text-on-ink">
               {tNav("cars")}
             </Link>
-            <Link href="/#about" className="text-on-dark/70 transition-colors hover:text-signal">
+            <Link href="/#about" className="text-on-ink/65 transition-colors hover:text-on-ink">
               {tNav("about")}
             </Link>
-            <Link href="/#contact" className="text-on-dark/70 transition-colors hover:text-signal">
+            <Link href="/#contact" className="text-on-ink/65 transition-colors hover:text-on-ink">
               {tNav("contact")}
             </Link>
           </nav>
@@ -75,8 +75,8 @@ export default async function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-on-dark-line px-6 py-5">
-        <p className="mx-auto max-w-6xl text-center font-mono text-[11px] text-on-dark-muted">
+      <div className="border-t border-line-dark px-6 py-5">
+        <p className="mx-auto max-w-6xl text-center font-mono text-[10px] uppercase tracking-[0.14em] text-on-ink-dim">
           © {year} {tBrand("name")}. {t("rights")}
         </p>
       </div>

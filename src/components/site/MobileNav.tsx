@@ -14,7 +14,7 @@ export default function MobileNav() {
   }
 
   const itemClass =
-    "rounded-lg px-3 py-3 text-sm font-semibold uppercase tracking-[0.1em] text-on-dark/80 transition-colors hover:bg-white/5 hover:text-signal";
+    "border-b border-line-dark px-1 py-3.5 font-mono text-xs uppercase tracking-[0.16em] text-on-ink/75 transition-colors hover:text-on-ink last:border-b-0";
 
   return (
     <div className="md:hidden">
@@ -23,13 +23,13 @@ export default function MobileNav() {
         onClick={() => setOpen((o) => !o)}
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
-        className="flex h-9 w-9 items-center justify-center text-on-dark"
+        className="flex h-9 w-9 items-center justify-center text-on-ink"
       >
         {open ? <CloseIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
       </button>
 
       {open && (
-        <nav className="absolute inset-x-0 top-full flex flex-col gap-1 border-b border-on-dark-line bg-slate px-6 py-4">
+        <nav className="absolute inset-x-0 top-full flex flex-col border-b border-line-dark bg-ink px-6 py-2">
           <Link href="/#about" onClick={close} className={itemClass}>
             {t("about")}
           </Link>

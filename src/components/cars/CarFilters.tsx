@@ -13,9 +13,9 @@ import {
 } from "@/lib/enums";
 
 const inputClass =
-  "w-full rounded-lg border border-hairline bg-surface px-3 py-2 text-sm text-ink transition-colors focus:border-signal focus:outline-none focus:ring-2 focus:ring-signal/20";
+  "w-full border border-line bg-surface px-3 py-2 text-sm text-ink transition-colors focus:border-ink focus:outline-none";
 const labelClass =
-  "mb-1 block font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted";
+  "mb-1 block font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-ash";
 
 export default function CarFilters({
   availableMakes,
@@ -49,31 +49,33 @@ export default function CarFilters({
   );
 
   return (
-    <div className="mb-8 rounded-2xl border border-hairline bg-surface p-5 shadow-[0_1px_3px_rgba(15,23,42,0.06)]">
+    <div className="mb-8 border border-line bg-surface p-5">
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-ink">
+        <h2 className="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-ink">
           {t("title")}
         </h2>
         <button
           type="button"
           onClick={() => router.push(pathname, { scroll: false })}
-          className="text-xs font-semibold uppercase tracking-wide text-signal transition-colors hover:text-signal-700"
+          className="font-mono text-[10px] uppercase tracking-[0.14em] text-ash underline underline-offset-4 transition-colors hover:text-ink"
         >
           {t("reset")}
         </button>
       </div>
 
       {/* Segmented control — vehicle type */}
-      <div className="mb-4 inline-flex rounded-lg border border-hairline bg-surface-dim p-1">
-        {["", ...VEHICLE_TYPES].map((v) => (
+      <div className="mb-4 inline-flex border border-line">
+        {["", ...VEHICLE_TYPES].map((v, i) => (
           <button
             key={v || "all"}
             type="button"
             onClick={() => setParam("vehicleType", v)}
-            className={`rounded-md px-4 py-1.5 text-xs font-semibold uppercase tracking-wide transition-colors ${
+            className={`px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.12em] transition-colors ${
+              i > 0 ? "border-l border-line" : ""
+            } ${
               vehicleType === v
-                ? "bg-slate text-white"
-                : "text-muted hover:text-ink"
+                ? "bg-ink text-on-ink"
+                : "bg-surface text-ash hover:text-ink"
             }`}
           >
             {v ? tEnums(`vehicleType.${v}`) : t("allVehicleTypes")}
