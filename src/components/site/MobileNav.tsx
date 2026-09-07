@@ -13,6 +13,9 @@ export default function MobileNav() {
     setOpen(false);
   }
 
+  const itemClass =
+    "rounded-lg px-3 py-3 text-sm font-semibold uppercase tracking-[0.1em] text-on-dark/80 transition-colors hover:bg-white/5 hover:text-signal";
+
   return (
     <div className="md:hidden">
       <button
@@ -20,27 +23,27 @@ export default function MobileNav() {
         onClick={() => setOpen((o) => !o)}
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
-        className="flex h-9 w-9 items-center justify-center text-paper"
+        className="flex h-9 w-9 items-center justify-center text-on-dark"
       >
         {open ? <CloseIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
       </button>
 
       {open && (
-        <nav className="absolute inset-x-0 top-full flex flex-col gap-1 border-b border-line bg-ink px-6 py-4 text-sm font-medium uppercase tracking-wide text-paper/80">
-          <Link href="/#about" onClick={close} className="rounded-md px-2 py-2.5 hover:bg-paper/5 hover:text-amber">
+        <nav className="absolute inset-x-0 top-full flex flex-col gap-1 border-b border-on-dark-line bg-slate px-6 py-4">
+          <Link href="/#about" onClick={close} className={itemClass}>
             {t("about")}
           </Link>
-          <Link href="/cars" onClick={close} className="rounded-md px-2 py-2.5 hover:bg-paper/5 hover:text-amber">
+          <Link href="/cars" onClick={close} className={itemClass}>
             {t("cars")}
           </Link>
           <Link
             href={{ pathname: "/cars", query: { vehicleType: "truck" } }}
             onClick={close}
-            className="rounded-md px-2 py-2.5 hover:bg-paper/5 hover:text-amber"
+            className={itemClass}
           >
             {t("trucks")}
           </Link>
-          <Link href="/#contact" onClick={close} className="rounded-md px-2 py-2.5 hover:bg-paper/5 hover:text-amber">
+          <Link href="/#contact" onClick={close} className={itemClass}>
             {t("contact")}
           </Link>
         </nav>

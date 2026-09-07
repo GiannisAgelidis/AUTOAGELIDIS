@@ -3,15 +3,18 @@
 import { useEffect, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { useSearchParams } from "next/navigation";
-import { usePathname, useRouter } from "@/i18n/navigation";
+import { usePathname, useRouter, Link } from "@/i18n/navigation";
 import type { CarWithImages } from "@/lib/supabase/types";
+import { ArrowRightIcon, CloseIcon } from "@/components/site/icons";
 
 function SpecRow({ label, value }: { label: string; value: React.ReactNode }) {
   if (value === null || value === undefined || value === "") return null;
   return (
-    <div className="flex justify-between border-b border-zinc-100 py-2 text-sm last:border-none dark:border-zinc-900">
-      <span className="text-zinc-500">{label}</span>
-      <span className="font-medium">{value}</span>
+    <div className="flex justify-between gap-4 border-b border-hairline py-2.5 text-sm last:border-none">
+      <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-muted">
+        {label}
+      </span>
+      <span className="text-right font-medium text-ink">{value}</span>
     </div>
   );
 }
@@ -29,10 +32,6 @@ export default function CarDetailModal({ car }: { car: CarWithImages }) {
   const images = [...(car.car_images ?? [])].sort(
     (a, b) => a.position - b.position,
   );
-
-  useEffect(() => {
-    setActiveIndex(0);
-  }, [car.id]);
 
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
@@ -75,23 +74,23 @@ export default function CarDetailModal({ car }: { car: CarWithImages }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/70 p-4 backdrop-blur-sm"
       onClick={close}
     >
       <div
-        className="flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-xl bg-white dark:bg-zinc-950 md:flex-row"
+        className="relative flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl bg-surface shadow-2xl md:flex-row"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           type="button"
           onClick={close}
           aria-label={t("close")}
-          className="absolute right-6 top-6 z-10 rounded-full bg-black/60 px-2.5 py-1 text-sm text-white"
+          className="absolute right-4 top-4 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-slate-900/60 text-white transition-colors hover:bg-slate-900/80"
         >
-          ✕
+          <CloseIcon className="h-4 w-4" />
         </button>
 
-        <div className="relative flex w-full flex-col bg-zinc-100 dark:bg-zinc-900 md:w-1/2">
+        <div className="relative flex w-full flex-col bg-surface-dim md:w-1/2">
           <div className="relative aspect-[4/3] w-full">
             {images.length > 0 ? (
               // eslint-disable-next-line @next/next/no-img-element
@@ -101,7 +100,7 @@ export default function CarDetailModal({ car }: { car: CarWithImages }) {
                 className="h-full w-full object-cover"
               />
             ) : (
-              <div className="flex h-full w-full items-center justify-center text-zinc-400">
+              <div className="flex h-full w-full items-center justify-center text-muted">
                 —
               </div>
             )}
@@ -110,14 +109,16 @@ export default function CarDetailModal({ car }: { car: CarWithImages }) {
                 <button
                   type="button"
                   onClick={prev}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/60 px-3 py-2 text-white"
+                  aria-label="Previous photo"
+                  className="absolute left-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-slate-900/60 text-lg text-white transition-colors hover:bg-slate-900/80"
                 >
                   ‹
                 </button>
                 <button
                   type="button"
                   onClick={next}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/60 px-3 py-2 text-white"
+                  aria-label="Next photo"
+                  className="absolute right-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-slate-900/60 text-lg text-white transition-colors hover:bg-slate-900/80"
                 >
                   ›
                 </button>
@@ -131,10 +132,8 @@ export default function CarDetailModal({ car }: { car: CarWithImages }) {
                   key={img.id}
                   type="button"
                   onClick={() => setActiveIndex(index)}
-                  className={`h-14 w-14 shrink-0 overflow-hidden rounded-md border-2 ${
-                    index === activeIndex
-                      ? "border-zinc-900 dark:border-white"
-                      : "border-transparent"
+                  className={`h-14 w-14 shrink-0 overflow-hidden rounded-md border-2 transition-colors ${
+                    index === activeIndex ? "border-signal" : "border-transparent"
                   }`}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -150,15 +149,17 @@ export default function CarDetailModal({ car }: { car: CarWithImages }) {
         </div>
 
         <div className="w-full overflow-y-auto p-6 md:w-1/2">
-          <h2 className="mb-1 text-xl font-semibold">{title}</h2>
-          <p className="mb-4 text-2xl font-bold">
+          <h2 className="text-xl font-extrabold tracking-[-0.01em] text-ink">
+            {title}
+          </h2>
+          <p className="mb-5 mt-1 text-2xl font-bold tabular-nums text-signal">
             {Number(car.price).toLocaleString()} €
           </p>
 
-          <h3 className="mb-2 text-sm font-semibold text-zinc-500">
+          <h3 className="mb-1 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-muted">
             {t("specs")}
           </h3>
-          <div className="mb-4">
+          <div className="mb-5">
             <SpecRow
               label={tFields("condition")}
               value={tEnums(`condition.${car.condition}`)}
@@ -214,14 +215,14 @@ export default function CarDetailModal({ car }: { car: CarWithImages }) {
 
           {car.features.length > 0 && (
             <>
-              <h3 className="mb-2 text-sm font-semibold text-zinc-500">
+              <h3 className="mb-2 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-muted">
                 {t("features")}
               </h3>
-              <div className="mb-4 flex flex-wrap gap-2">
+              <div className="mb-5 flex flex-wrap gap-2">
                 {car.features.map((feature) => (
                   <span
                     key={feature}
-                    className="rounded-full bg-zinc-100 px-3 py-1 text-xs dark:bg-zinc-900"
+                    className="rounded-full border border-hairline bg-surface-dim px-3 py-1 text-xs text-ink"
                   >
                     {tEnums(`features.${feature}`)}
                   </span>
@@ -232,12 +233,23 @@ export default function CarDetailModal({ car }: { car: CarWithImages }) {
 
           {description && (
             <>
-              <h3 className="mb-2 text-sm font-semibold text-zinc-500">
+              <h3 className="mb-2 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-muted">
                 {t("description")}
               </h3>
-              <p className="whitespace-pre-line text-sm">{description}</p>
+              <p className="mb-5 whitespace-pre-line text-sm text-muted">
+                {description}
+              </p>
             </>
           )}
+
+          <Link
+            href="/#contact"
+            onClick={close}
+            className="group inline-flex items-center gap-2 rounded-lg bg-signal px-5 py-2.5 text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:bg-signal-700"
+          >
+            {t("contactAboutThis")}
+            <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </Link>
         </div>
       </div>
     </div>

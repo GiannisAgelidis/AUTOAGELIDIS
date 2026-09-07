@@ -1,48 +1,66 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * Auto Agelidis — "Showroom Floor" visual system (giannis branch)
+ * A bright, confident dealership look: deep slate structure, signal-red action
+ * colour, spec-sheet data motif carried from hero → cards → detail view.
+ */
 
-  /* Brand tokens — Auto Agelidis */
-  --color-ink: #0b0c0e;
-  --color-ink-soft: #16181c;
-  --color-paper: #f5f3ef;
-  --color-paper-dim: #eae7e0;
-  --color-steel: #8b8f96;
-  --color-steel-dim: #5b5e64;
-  --color-amber: #e8a33d;
-  --color-amber-dim: #c97f1e;
-  --color-line: #2a2c30;
+:root {
+  --background: #f7f8fa;
+  --foreground: #0f172a;
+
+  /* Surfaces */
+  --color-bg: #f7f8fa;
+  --color-surface: #ffffff;
+  --color-surface-dim: #eef1f5;
+
+  /* Structure / dark sections */
+  --color-slate: #1e293b;
+  --color-slate-700: #334155;
+  --color-slate-900: #0f172a;
+
+  /* Text */
+  --color-ink: #0f172a;
+  --color-muted: #5b6472;
+  --color-hairline: #e2e8f0;
+
+  /* Signal — CTA, price, active state */
+  --color-signal: #dc2626;
+  --color-signal-700: #b91c1c;
+
+  /* On dark */
+  --color-on-dark: #f1f5f9;
+  --color-on-dark-muted: #94a3b8;
+  --color-on-dark-line: #2b3849;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-app-sans);
+  --font-mono: var(--font-app-mono);
 
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-surface-dim: var(--color-surface-dim);
+  --color-slate: var(--color-slate);
+  --color-slate-700: var(--color-slate-700);
+  --color-slate-900: var(--color-slate-900);
   --color-ink: var(--color-ink);
-  --color-ink-soft: var(--color-ink-soft);
-  --color-paper: var(--color-paper);
-  --color-paper-dim: var(--color-paper-dim);
-  --color-steel: var(--color-steel);
-  --color-steel-dim: var(--color-steel-dim);
-  --color-amber: var(--color-amber);
-  --color-amber-dim: var(--color-amber-dim);
-  --color-line: var(--color-line);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-muted: var(--color-muted);
+  --color-hairline: var(--color-hairline);
+  --color-signal: var(--color-signal);
+  --color-signal-700: var(--color-signal-700);
+  --color-on-dark: var(--color-on-dark);
+  --color-on-dark-muted: var(--color-on-dark-muted);
+  --color-on-dark-line: var(--color-on-dark-line);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+  font-family: var(--font-app-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer utilities {
@@ -51,12 +69,14 @@ body {
   }
 }
 
-/* Motion — entrances and micro-interactions */
+/* ------------------------------------------------------------------ *
+ *  Motion — entrances and micro-interactions (CSS only, no library)
+ * ------------------------------------------------------------------ */
 
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
@@ -66,7 +86,7 @@ body {
 
 .reveal {
   opacity: 0;
-  transform: translateY(14px);
+  transform: translateY(16px);
 }
 
 .reveal.is-visible {
@@ -75,24 +95,26 @@ body {
 
 .hero-enter {
   opacity: 0;
-  animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fade-up 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: var(--enter-delay, 0ms);
 }
 
+/* Large ghost wordmark drift on the hero */
 @keyframes drift {
   0%,
   100% {
     transform: translate(0, 0) scale(1);
   }
   50% {
-    transform: translate(-1.5%, 1%) scale(1.02);
+    transform: translate(-1.5%, 1%) scale(1.03);
   }
 }
 
 .ambient-mark {
-  animation: drift 22s ease-in-out infinite;
+  animation: drift 26s ease-in-out infinite;
 }
 
+/* Underline nav links — signal red */
 .nav-link {
   position: relative;
 }
@@ -102,24 +124,54 @@ body {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -3px;
-  height: 1px;
-  background: currentColor;
+  bottom: -6px;
+  height: 2px;
+  background: var(--color-signal);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.25s ease;
 }
 
-.nav-link:hover::after {
+.nav-link:hover::after,
+.nav-link[data-active="true"]::after {
   transform: scaleX(1);
 }
 
-.tag-interactive {
-  transition: transform 0.2s ease;
+/* Card lift + cover zoom */
+.card-lift {
+  transition:
+    transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
 }
 
-.tag-interactive:hover {
-  transform: translateY(-2px);
+.card-lift:hover {
+  transform: translateY(-4px);
+}
+
+.card-cover {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group:hover .card-cover {
+  transform: scale(1.045);
+}
+
+/* Scroll cue */
+@keyframes nudge {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(5px);
+    opacity: 1;
+  }
+}
+
+.scroll-cue {
+  animation: nudge 1.8s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -130,7 +182,16 @@ body {
     animation: none;
   }
 
-  .tag-interactive:hover {
+  .ambient-mark,
+  .scroll-cue {
+    animation: none;
+  }
+
+  .card-lift:hover {
+    transform: none;
+  }
+
+  .group:hover .card-cover {
     transform: none;
   }
 }

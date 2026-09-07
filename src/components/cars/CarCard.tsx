@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import type { CarWithImages } from "@/lib/supabase/types";
@@ -30,28 +31,30 @@ export default function CarCard({ car }: { car: CarWithImages }) {
     <button
       type="button"
       onClick={openDetail}
-      className="flex flex-col overflow-hidden rounded-xl border border-zinc-200 bg-white text-left transition-shadow hover:shadow-md dark:border-zinc-800 dark:bg-zinc-950"
+      className="group card-lift flex flex-col overflow-hidden rounded-xl border border-hairline bg-surface text-left shadow-[0_1px_2px_rgba(15,23,42,0.05)] hover:border-slate/20 hover:shadow-[0_20px_40px_-16px_rgba(15,23,42,0.25)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal/40"
     >
-      <div className="aspect-[4/3] w-full bg-zinc-100 dark:bg-zinc-900">
+      <div className="relative aspect-[4/3] w-full overflow-hidden bg-surface-dim">
         {cover && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             src={cover.url}
             alt={title}
-            className="h-full w-full object-cover"
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
+            className="card-cover object-cover"
           />
         )}
       </div>
-      <div className="flex flex-1 flex-col gap-1 p-4">
-        <p className="font-medium">{title}</p>
-        <p className="text-sm text-zinc-500">
+      <div className="flex flex-1 flex-col gap-1.5 p-5">
+        <p className="font-semibold">{title}</p>
+        <p className="font-mono text-xs uppercase tracking-[0.08em] text-muted">
           {car.year}
-          {car.month ? `/${car.month}` : ""} ·{" "}
-          {car.mileage_km.toLocaleString()} km ·{" "}
+          {car.month ? `/${car.month}` : ""} · {car.mileage_km.toLocaleString()} km ·{" "}
           {tEnums(`fuelType.${car.fuel_type}`)}
         </p>
-        <p className="mt-auto pt-2 text-lg font-semibold">
-          {car.price ? `${Number(car.price).toLocaleString()} €` : t("priceOnRequest")}
+        <p className="mt-auto pt-3 text-xl font-bold tabular-nums text-signal">
+          {car.price
+            ? `${Number(car.price).toLocaleString()} €`
+            : t("priceOnRequest")}
         </p>
       </div>
     </button>

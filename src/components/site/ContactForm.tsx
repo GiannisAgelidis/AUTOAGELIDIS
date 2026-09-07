@@ -6,8 +6,9 @@ import Tag from "./Tag";
 import Reveal from "./Reveal";
 
 const inputClass =
-  "w-full rounded-md border border-ink/15 bg-paper px-3 py-2.5 text-sm text-ink placeholder:text-ink/40 focus:border-amber focus:outline-none";
-const labelClass = "mb-1 block text-xs font-semibold uppercase tracking-wider text-ink/60";
+  "w-full rounded-lg border border-hairline bg-surface px-3.5 py-2.5 text-sm text-ink placeholder:text-muted/60 transition-colors focus:border-signal focus:outline-none focus:ring-2 focus:ring-signal/20";
+const labelClass =
+  "mb-1.5 block font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted";
 
 export default function ContactForm() {
   const t = useTranslations("contact");
@@ -39,14 +40,19 @@ export default function ContactForm() {
   }
 
   return (
-    <section id="contact" className="bg-paper text-ink">
-      <Reveal className="mx-auto flex w-full max-w-3xl flex-col gap-8 px-6 py-20">
-        <Tag>{t("title")}</Tag>
-        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-          {t("title")}
-        </h2>
+    <section id="contact" className="bg-bg text-ink">
+      <Reveal className="mx-auto flex w-full max-w-2xl flex-col gap-8 px-6 py-24">
+        <div className="flex flex-col gap-4">
+          <Tag>{t("title")}</Tag>
+          <h2 className="text-3xl font-extrabold tracking-[-0.02em] sm:text-4xl">
+            {t("title")}
+          </h2>
+        </div>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-4 rounded-2xl border border-hairline bg-surface p-6 shadow-[0_1px_3px_rgba(15,23,42,0.06),0_16px_40px_-16px_rgba(15,23,42,0.14)] sm:p-8"
+        >
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
               <label className={labelClass} htmlFor="name">
@@ -89,16 +95,16 @@ export default function ContactForm() {
           </div>
 
           {status === "sent" && (
-            <p className="text-sm font-medium text-amber-dim">{t("success")}</p>
+            <p className="text-sm font-medium text-signal">{t("success")}</p>
           )}
           {status === "error" && (
-            <p className="text-sm font-medium text-red-600">{t("error")}</p>
+            <p className="text-sm font-medium text-signal">{t("error")}</p>
           )}
 
           <button
             type="submit"
             disabled={status === "sending"}
-            className="w-fit rounded-md bg-ink px-6 py-3 text-sm font-semibold uppercase tracking-wide text-paper transition-all hover:scale-[1.03] hover:bg-ink-soft active:scale-[0.98] disabled:opacity-50 disabled:hover:scale-100"
+            className="w-fit rounded-lg bg-signal px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition-all hover:bg-signal-700 active:scale-[0.98] disabled:opacity-50 disabled:hover:bg-signal"
           >
             {t("send")}
           </button>

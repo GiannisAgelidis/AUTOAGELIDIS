@@ -13,8 +13,9 @@ import {
 } from "@/lib/enums";
 
 const inputClass =
-  "w-full rounded-md border border-zinc-300 px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-900";
-const labelClass = "mb-1 block text-xs font-medium text-zinc-500";
+  "w-full rounded-lg border border-hairline bg-surface px-3 py-2 text-sm text-ink transition-colors focus:border-signal focus:outline-none focus:ring-2 focus:ring-signal/20";
+const labelClass =
+  "mb-1 block font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted";
 
 export default function CarFilters({
   availableMakes,
@@ -48,28 +49,31 @@ export default function CarFilters({
   );
 
   return (
-    <div className="mb-8 rounded-xl border border-zinc-200 p-4 dark:border-zinc-800">
-      <div className="mb-3 flex items-center justify-between">
-        <h2 className="text-sm font-semibold">{t("title")}</h2>
+    <div className="mb-8 rounded-2xl border border-hairline bg-surface p-5 shadow-[0_1px_3px_rgba(15,23,42,0.06)]">
+      <div className="mb-4 flex items-center justify-between">
+        <h2 className="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-ink">
+          {t("title")}
+        </h2>
         <button
           type="button"
           onClick={() => router.push(pathname, { scroll: false })}
-          className="text-xs text-zinc-500 underline hover:text-zinc-700 dark:hover:text-zinc-300"
+          className="text-xs font-semibold uppercase tracking-wide text-signal transition-colors hover:text-signal-700"
         >
           {t("reset")}
         </button>
       </div>
 
-      <div className="mb-3 flex gap-2">
+      {/* Segmented control — vehicle type */}
+      <div className="mb-4 inline-flex rounded-lg border border-hairline bg-surface-dim p-1">
         {["", ...VEHICLE_TYPES].map((v) => (
           <button
             key={v || "all"}
             type="button"
             onClick={() => setParam("vehicleType", v)}
-            className={`rounded-full px-3 py-1 text-xs font-medium ${
+            className={`rounded-md px-4 py-1.5 text-xs font-semibold uppercase tracking-wide transition-colors ${
               vehicleType === v
-                ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900"
-                : "border border-zinc-300 dark:border-zinc-700"
+                ? "bg-slate text-white"
+                : "text-muted hover:text-ink"
             }`}
           >
             {v ? tEnums(`vehicleType.${v}`) : t("allVehicleTypes")}

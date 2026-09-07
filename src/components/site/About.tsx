@@ -1,44 +1,36 @@
 import { getTranslations } from "next-intl/server";
-import { Image as IKImage } from "@imagekit/next";
 import Tag from "./Tag";
 import Reveal from "./Reveal";
+import { CheckIcon } from "./icons";
 
 export default async function About() {
   const t = await getTranslations("about");
   const points = ["inspected", "tradeIn", "local"] as const;
 
   return (
-    <section id="about" className="relative overflow-hidden bg-paper text-ink">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-y-0 right-0 hidden w-[40%] items-center justify-end pr-6 md:flex"
-      >
-         {/* <IKImage
-          src="/AutoAgelidis/AUTOAGELIDIS.png"
-          alt=""
-          width={640}
-          height={320}
-          transformation={[{ width: 960 }]}
-          className="ambient-mark w-full max-w-[480px] opacity-[0.08]"
-        />  */}
-        {/* uncomment this part to show second logo watermark */}
-      </div>
+    <section id="about" className="bg-bg text-ink">
+      <Reveal className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-12 px-6 py-24 md:grid-cols-[1.1fr_0.9fr] md:items-center">
+        <div className="flex flex-col gap-6">
+          <Tag>{t("eyebrow")}</Tag>
 
-      <Reveal className="relative mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-20">
-        <Tag>{t("eyebrow")}</Tag>
+          <h2 className="max-w-xl text-3xl font-extrabold leading-tight tracking-[-0.02em] sm:text-4xl">
+            {t("title")}
+          </h2>
 
-        <h2 className="max-w-2xl text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
-          {t("title")}
-        </h2>
+          <p className="max-w-xl text-lg leading-relaxed text-muted">
+            {t("body")}
+          </p>
+        </div>
 
-        <p className="max-w-xl text-lg leading-relaxed text-ink/75">
-          {t("body")}
-        </p>
-
-        <ul className="mt-4 flex max-w-xl flex-col gap-3">
+        <ul className="flex flex-col gap-3 rounded-2xl border border-hairline bg-surface p-6 shadow-[0_1px_3px_rgba(15,23,42,0.06),0_12px_32px_-12px_rgba(15,23,42,0.12)]">
           {points.map((point) => (
-            <li key={point} className="flex items-center gap-3 text-sm font-medium">
-              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-amber" />
+            <li
+              key={point}
+              className="flex items-start gap-3 border-b border-hairline pb-3 text-sm font-medium last:border-none last:pb-0"
+            >
+              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-signal/10 text-signal">
+                <CheckIcon className="h-3 w-3" />
+              </span>
               {t(`points.${point}`)}
             </li>
           ))}

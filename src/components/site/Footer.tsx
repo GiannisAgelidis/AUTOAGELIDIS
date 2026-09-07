@@ -12,9 +12,11 @@ const LANDLINE_HREF = "+302531029470";
 const INSTAGRAM_URL = "#";
 const FACEBOOK_URL = "#";
 
-const columnHeading = "mb-4 font-mono text-xs uppercase tracking-wider text-paper/40";
-const linkRow = "flex items-center gap-2.5 hover:text-amber";
-const linkGroup = "flex flex-col items-start gap-3";
+const columnHeading =
+  "mb-4 font-mono text-[10px] uppercase tracking-[0.16em] text-on-dark-muted";
+const linkRow =
+  "flex items-center gap-2.5 text-on-dark/70 transition-colors hover:text-signal";
+const linkGroup = "flex flex-col items-start gap-3 text-sm";
 
 export default async function Footer() {
   const t = await getTranslations("footer");
@@ -23,9 +25,9 @@ export default async function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-line bg-ink text-paper/70">
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 justify-center gap-10 px-6 py-14 text-sm sm:grid-cols-[repeat(3,max-content)] sm:gap-42">
-        <div className="flex flex-col items-start">
+    <footer className="border-t border-on-dark-line bg-slate text-on-dark">
+      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 px-6 py-16 sm:grid-cols-3">
+        <div>
           <h3 className={columnHeading}>{t("contactHeading")}</h3>
           <div className={linkGroup}>
             <a href={`mailto:${EMAIL}`} className={linkRow}>
@@ -43,22 +45,22 @@ export default async function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col items-start">
+        <div>
           <h3 className={columnHeading}>{t("navHeading")}</h3>
           <nav className={linkGroup}>
-            <Link href="/cars" className="hover:text-amber">
+            <Link href="/cars" className="text-on-dark/70 transition-colors hover:text-signal">
               {tNav("cars")}
             </Link>
-            <Link href="/#about" className="hover:text-amber">
+            <Link href="/#about" className="text-on-dark/70 transition-colors hover:text-signal">
               {tNav("about")}
             </Link>
-            <Link href="/#contact" className="hover:text-amber">
+            <Link href="/#contact" className="text-on-dark/70 transition-colors hover:text-signal">
               {tNav("contact")}
             </Link>
           </nav>
         </div>
 
-        <div className="flex flex-col items-start">
+        <div>
           <h3 className={columnHeading}>{t("followHeading")}</h3>
           <div className={linkGroup}>
             <a href={INSTAGRAM_URL} className={linkRow}>
@@ -73,8 +75,8 @@ export default async function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-line px-6 py-5">
-        <p className="mx-auto max-w-6xl text-center font-mono text-xs text-paper/40">
+      <div className="border-t border-on-dark-line px-6 py-5">
+        <p className="mx-auto max-w-6xl text-center font-mono text-[11px] text-on-dark-muted">
           © {year} {tBrand("name")}. {t("rights")}
         </p>
       </div>

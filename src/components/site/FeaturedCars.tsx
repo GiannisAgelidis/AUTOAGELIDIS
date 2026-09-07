@@ -1,8 +1,10 @@
 import { getTranslations, getLocale } from "next-intl/server";
+import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/server";
 import Tag from "./Tag";
 import Reveal from "./Reveal";
+import { ArrowRightIcon } from "./icons";
 
 export default async function FeaturedCars() {
   const t = await getTranslations("featured");
@@ -19,25 +21,26 @@ export default async function FeaturedCars() {
   const featured = cars ?? [];
 
   return (
-    <section className="bg-paper-dim text-ink">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-20">
+    <section className="bg-surface-dim text-ink">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 py-24">
         <Reveal className="flex flex-wrap items-end justify-between gap-4">
           <div className="flex flex-col gap-4">
             <Tag>{t("eyebrow")}</Tag>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="text-3xl font-extrabold tracking-[-0.02em] sm:text-4xl">
               {t("title")}
             </h2>
           </div>
           <Link
             href="/cars"
-            className="nav-link text-sm font-semibold uppercase tracking-wide text-ink hover:text-amber-dim"
+            className="group inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-signal transition-colors hover:text-signal-700"
           >
-            {t("viewAll")} →
+            {t("viewAll")}
+            <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </Reveal>
 
         {featured.length === 0 ? (
-          <p className="text-ink/60">{t("empty")}</p>
+          <p className="text-muted">{t("empty")}</p>
         ) : (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {featured.map((car, index) => {
@@ -53,27 +56,28 @@ export default async function FeaturedCars() {
                 <Reveal key={car.id} delay={index * 90}>
                   <Link
                     href={{ pathname: "/cars", query: { car: car.id } }}
-                    className="group flex h-full flex-col overflow-hidden rounded-lg bg-paper shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                    className="group card-lift flex h-full flex-col overflow-hidden rounded-xl border border-hairline bg-surface shadow-[0_1px_2px_rgba(15,23,42,0.05)] hover:border-slate/20 hover:shadow-[0_20px_40px_-16px_rgba(15,23,42,0.25)]"
                   >
-                    <div className="aspect-[4/3] w-full overflow-hidden bg-ink/5">
+                    <div className="relative aspect-[4/3] w-full overflow-hidden bg-surface-dim">
                       {cover && (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
+                        <Image
                           src={cover.url}
                           alt={title}
-                          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.05]"
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
+                          className="card-cover object-cover"
                         />
                       )}
                     </div>
-                    <div className="flex flex-1 flex-col gap-2 p-5">
+                    <div className="flex flex-1 flex-col gap-1.5 p-5">
                       <p className="font-semibold">{title}</p>
-                      <p className="text-sm text-ink/60">
+                      <p className="font-mono text-xs uppercase tracking-[0.08em] text-muted">
                         {car.year} · {car.mileage_km.toLocaleString()} km ·{" "}
                         {tEnums(`fuelType.${car.fuel_type}`)}
                       </p>
-                      <Tag className="mt-auto self-start" size="lg" interactive>
+                      <p className="mt-auto pt-3 text-xl font-bold tabular-nums text-signal">
                         {Number(car.price).toLocaleString()} €
-                      </Tag>
+                      </p>
                     </div>
                   </Link>
                 </Reveal>
