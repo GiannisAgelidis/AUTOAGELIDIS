@@ -14,18 +14,21 @@ export default async function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-line-dark bg-ink text-on-ink">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-6 px-6 py-3">
-        <Link href="/" className="shrink-0" aria-label="Auto Agelidis">
+        <Link href="/" className="flex shrink-0 items-center" aria-label="Auto Agelidis">
           <IKImage
             src="/AutoAgelidis/AUTO AGELIDIS-3.png"
             alt="Auto Agelidis"
-            width={640}
-            height={320}
-            transformation={[{ width: 480 }]}
-            className="h-12 w-auto"
+            width={1200}
+            height={184}
+            transformation={[
+              { x: 900, y: 1320, width: 5220, height: 800, cropMode: "extract" },
+              { width: 1200 },
+            ]}
+            className="h-6 w-auto"
           />
         </Link>
 
-        <nav className="hidden items-center gap-9 font-mono text-[11px] uppercase tracking-[0.16em] text-on-ink/70 md:flex">
+        <nav className="hidden items-center gap-9 font-sans text-[11px] uppercase tracking-[0.16em] text-on-ink/70 md:flex">
           <Link href="/#about" className="nav-link transition-colors hover:text-on-ink">
             {t("about")}
           </Link>
@@ -46,7 +49,7 @@ export default async function Header() {
         <div className="flex items-center gap-5">
           <a
             href={`tel:${LANDLINE_HREF}`}
-            className="hidden border border-line-dark px-3 py-2 font-mono text-[11px] tracking-[0.12em] text-on-ink/80 transition-colors hover:border-on-ink hover:text-on-ink lg:block"
+            className="hidden whitespace-nowrap border border-line-dark px-3 py-2 font-mono text-[11px] tracking-[0.12em] text-on-ink/80 transition-colors hover:border-on-ink hover:text-on-ink lg:block"
           >
             {LANDLINE_DISPLAY}
           </a>

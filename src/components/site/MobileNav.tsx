@@ -14,7 +14,7 @@ export default function MobileNav() {
   }
 
   const itemClass =
-    "border-b border-line-dark px-1 py-3.5 font-mono text-xs uppercase tracking-[0.16em] text-on-ink/75 transition-colors hover:text-on-ink last:border-b-0";
+    "border-b border-line-dark px-1 py-3.5 font-sans text-xs uppercase tracking-[0.16em] text-on-ink/75 transition-colors hover:text-on-ink last:border-b-0";
 
   return (
     <div className="md:hidden">

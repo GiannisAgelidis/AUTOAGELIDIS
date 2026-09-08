@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { Image as IKImage } from "@imagekit/next";
+import { Video as IKVideo } from "@imagekit/next";
 import { Link } from "@/i18n/navigation";
 import Tag from "./Tag";
 import { ArrowRightIcon } from "./icons";
@@ -19,18 +19,17 @@ export default async function Hero() {
 
   return (
     <section className="relative overflow-hidden bg-ink text-on-ink">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -right-16 bottom-[-12%] hidden w-[55%] justify-end sm:flex"
-      >
-        <IKImage
-          src="/AutoAgelidis/AUTO AGELIDIS-3.png"
-          alt=""
-          width={960}
-          height={480}
-          transformation={[{ width: 1100 }]}
-          className="ambient-mark w-full max-w-[640px] opacity-[0.04]"
+      <div aria-hidden className="absolute inset-0">
+        <IKVideo
+          src="/AutoAgelidis/2.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="h-full w-full object-cover"
         />
+        <div className="absolute inset-0 bg-ink/20" />
       </div>
 
       <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 pb-24 pt-16 md:pt-28">
@@ -50,7 +49,7 @@ export default async function Hero() {
         </h1>
 
         <p
-          className="hero-enter max-w-xl text-lg leading-relaxed text-on-ink-dim"
+          className="hero-enter max-w-xl text-lg leading-relaxed text-on-ink-dim text-white/70"
           style={{ "--enter-delay": "160ms" } as React.CSSProperties}
         >
           {t("subtitle")}

@@ -21,7 +21,7 @@ export default async function About() {
           </p>
         </div>
 
-        <ul className="divide-y divide-line border-y border-line">
+        <ul className="divide-y divide-line border-y border-line mt-11">
           {points.map((point) => (
             <li key={point} className="flex items-start gap-4 py-4 text-sm">
               <span

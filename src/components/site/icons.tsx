@@ -156,6 +156,26 @@ export function InstagramIcon({ className = "" }: { className?: string }) {
   );
 }
 
+export function CarIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.75}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden
+    >
+      <path d="M4 16.5V13l1.6-4.3a2 2 0 0 1 1.9-1.4h9a2 2 0 0 1 1.9 1.4L20 13v3.5" />
+      <path d="M4 13h16" />
+      <circle cx="7.5" cy="16.5" r="1.6" />
+      <circle cx="16.5" cy="16.5" r="1.6" />
+    </svg>
+  );
+}
+
 export function FacebookIcon({ className = "" }: { className?: string }) {
   return (
     <svg

@@ -65,7 +65,7 @@ export default async function Location() {
           </a>
         </div>
 
-        <div className="min-h-[300px] overflow-hidden border border-line-dark grayscale">
+        <div className="min-h-[300px] overflow-hidden border border-line-dark rounded-xl">
           <iframe
             title={t("title")}
             src={`https://www.google.com/maps?q=${MAP_QUERY}&output=embed`}

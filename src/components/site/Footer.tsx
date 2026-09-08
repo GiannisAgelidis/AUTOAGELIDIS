@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { MailIcon, PhoneIcon, InstagramIcon, FacebookIcon } from "./icons";
+import { MailIcon, PhoneIcon, InstagramIcon, FacebookIcon, CarIcon } from "./icons";
 
 const EMAIL = "info@autoagelidis.gr";
 const MOBILE_DISPLAY = "693 223 2929";
@@ -11,6 +11,8 @@ const LANDLINE_HREF = "+302531029470";
 // Placeholders — swap in the real profile URLs once the pages exist.
 const INSTAGRAM_URL = "#";
 const FACEBOOK_URL = "#";
+const CARGR_URL = "https://auto-importagelidis.car.gr/cars/";
+const CARGR_DISPLAY = "auto-importagelidis.car.gr";
 
 const columnHeading =
   "mb-4 font-mono text-[10px] uppercase tracking-[0.18em] text-on-ink-dim";
@@ -70,6 +72,15 @@ export default async function Footer() {
             <a href={FACEBOOK_URL} className={linkRow}>
               <FacebookIcon className="h-4 w-4 shrink-0" />
               Facebook
+            </a>
+            <a
+              href={CARGR_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={linkRow}
+            >
+              <CarIcon className="h-4 w-4 shrink-0" />
+              {CARGR_DISPLAY}
             </a>
           </div>
         </div>
