@@ -12,7 +12,7 @@ export default async function Header() {
   const t = await getTranslations("nav");
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line-dark bg-ink text-on-ink">
+    <header className="sticky top-0 z-40 border-b border-line-dark bg-ink text-on-ink  ">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-6 px-6 py-3">
         <Link href="/" className="flex shrink-0 items-center" aria-label="Auto Agelidis">
           <IKImage
@@ -32,14 +32,8 @@ export default async function Header() {
           <Link href="/#about" className="nav-link transition-colors hover:text-on-ink">
             {t("about")}
           </Link>
-          <Link href="/cars" className="nav-link transition-colors hover:text-on-ink">
-            {t("cars")}
-          </Link>
-          <Link
-            href={{ pathname: "/cars", query: { vehicleType: "truck" } }}
-            className="nav-link transition-colors hover:text-on-ink"
-          >
-            {t("trucks")}
+          <Link href="/vehicles" className="nav-link transition-colors hover:text-on-ink">
+            {t("vehicles")}
           </Link>
           <Link href="/#contact" className="nav-link transition-colors hover:text-on-ink">
             {t("contact")}

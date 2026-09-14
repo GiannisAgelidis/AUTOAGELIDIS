@@ -149,6 +149,7 @@ export default function CarForm({
   const [features, setFeatures] = useState<Set<Feature>>(
     () => new Set(initialCar?.features ?? []),
   );
+  const [cargrUrl, setCargrUrl] = useState(initialCar?.cargr_url ?? "");
   const [images, setImages] = useState<ImageItem[]>(() =>
     (initialCar?.car_images ?? [])
       .slice()
@@ -287,6 +288,7 @@ export default function CarForm({
       descriptionEn: descriptionEn || null,
       descriptionGr: descriptionGr || null,
       features: Array.from(features),
+      cargrUrl: cargrUrl.trim() || null,
       images: images
         .filter((img) => img.status === "done" && img.fileId && img.url)
         .map((img, index) => ({
@@ -674,6 +676,23 @@ export default function CarForm({
             </div>
           ))}
         </div>
+      </fieldset>
+
+      <fieldset className="rounded-xl border border-zinc-200 p-6 dark:border-zinc-800">
+        <legend className="px-2 text-sm font-semibold">
+          {t("sectionCargr")}
+        </legend>
+        <Field label={t("cargrUrl")}>
+          <input
+            type="url"
+            inputMode="url"
+            placeholder="https://www.car.gr/..."
+            className={inputClass}
+            value={cargrUrl}
+            onChange={(e) => setCargrUrl(e.target.value)}
+          />
+        </Field>
+        <p className="mt-2 text-xs text-zinc-500">{t("cargrUrlHint")}</p>
       </fieldset>
 
       {error && (

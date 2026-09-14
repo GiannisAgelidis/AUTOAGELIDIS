@@ -43,6 +43,7 @@ export type CarRow = {
   description_en: string | null;
   description_gr: string | null;
   features: Feature[];
+  cargr_url: string | null;
   created_at: string;
   updated_at: string;
 };
@@ -65,8 +66,11 @@ export type Database = {
     Tables: {
       cars: {
         Row: CarRow;
-        Insert: Omit<CarRow, "id" | "created_at" | "updated_at"> &
-          Partial<Pick<CarRow, "id">>;
+        // cargr_url is optional on insert too: the column may not exist yet
+        // on the live table (see supabase/migrations/0002_add_cargr_url.sql),
+        // and the create/update actions omit it in that fallback path.
+        Insert: Omit<CarRow, "id" | "created_at" | "updated_at" | "cargr_url"> &
+          Partial<Pick<CarRow, "id" | "cargr_url">>;
         Update: Partial<Omit<CarRow, "id" | "created_at" | "updated_at">>;
         Relationships: [];
       };

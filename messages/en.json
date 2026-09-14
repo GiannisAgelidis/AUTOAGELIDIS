@@ -4,22 +4,21 @@
   },
   "nav": {
     "home": "Home",
-    "cars": "Cars",
-    "trucks": "Trucks",
+    "vehicles": "Vehicles",
     "about": "About",
     "contact": "Contact"
   },
   "hero": {
     "eyebrow": "Auto Agelidis · Komotini",
     "title": "Vehicles with a\nrecorded history.",
-    "subtitle": "We've been buying and selling used cars and trucks in Komotini since 2010 — every vehicle listed with full specifications, no surprises.",
+    "subtitle": "We've been buying and selling used cars and trucks in Komotini since 1991 — every vehicle listed with full specifications, no surprises.",
     "cta": "View vehicles",
     "ctaSecondary": "Contact us",
     "stats": {
       "since": "Since",
-      "sinceValue": "2010",
+      "sinceValue": "1991",
       "experience": "Years of experience",
-      "experienceValue": "15+",
+      "experienceValue": "35+",
       "location": "Based in",
       "locationValue": "Komotini"
     }
@@ -27,11 +26,11 @@
   "about": {
     "eyebrow": "About",
     "title": "A family business, no middlemen.",
-    "body": "Auto Agelidis has been buying and selling used cars and trucks in Komotini since 2010. Every listing comes with full specifications — mileage, engine size, horsepower, condition — so you know exactly what you're buying before you come see it in person.",
+    "body": "Auto Agelidis has been buying and selling used cars and trucks in Komotini since 1991. Every listing comes with full specifications — mileage, engine size, horsepower, condition — so you know exactly what you're buying before you come see it in person.",
     "points": {
       "inspected": "Full details on every listing",
       "tradeIn": "Trade in your current vehicle",
-      "local": "Serving Komotini and Thrace"
+      "local": "Serving the entirety of Greece"
     }
   },
   "location": {
@@ -96,10 +95,18 @@
   },
   "carDetail": {
     "close": "Close",
+    "backToVehicles": "Back to vehicles",
     "specs": "Specifications",
     "features": "Features",
     "description": "Description",
     "contactAboutThis": "Ask about this vehicle",
+    "viewOnCargr": "View on Car.gr",
+    "call": "Call us",
+    "notFound": {
+      "title": "Vehicle not found",
+      "body": "This listing may have been removed or already sold.",
+      "cta": "View available vehicles"
+    },
     "fields": {
       "makeModel": "Make - Model",
       "trim": "Type / trim",
@@ -265,7 +272,10 @@
       "sectionAppearance": "Appearance",
       "sectionDescription": "Description",
       "sectionFeatures": "Features",
-      "sectionPhotos": "Photos"
+      "sectionPhotos": "Photos",
+      "sectionCargr": "Car.gr link",
+      "cargrUrl": "Car.gr listing link",
+      "cargrUrlHint": "Optional — shown on the vehicle's page, next to the price."
     }
   }
 }

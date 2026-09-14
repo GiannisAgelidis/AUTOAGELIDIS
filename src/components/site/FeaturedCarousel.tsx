@@ -86,25 +86,22 @@ export default function FeaturedCarousel({ cars }: { cars: CarWithImages[] }) {
       else target = atStart ? max : rail.scrollLeft - rail.clientWidth;
       target = Math.max(0, Math.min(max, target));
 
-      const from = rail.scrollLeft;
-      // Land immediately (works regardless of smooth-scroll / rAF support)...
-      rail.scrollLeft = target;
+      // Hand the motion to the browser's own compositor-driven smooth
+      // scroll — it's built to cooperate with scroll-snap, so it doesn't
+      // fight the snap point the way a hand-rolled main-thread rAF tween
+      // did (that read as stutter/lag once images were decoding mid-scroll).
+      // Unsupported browsers just jump instantly — a fine fallback.
+      rail.scrollTo({
+        left: target,
+        behavior: prefersReducedMotion() ? "auto" : "smooth",
+      });
+
+      // Optimistic counter update — the scroll listener above will settle
+      // it to the exact value once the scroll (smooth or instant) lands.
       setPage((p) => {
         if (dir === 1) return atEnd ? 1 : Math.min(pages, p + 1);
         return atStart ? pages : Math.max(1, p - 1);
       });
-
-      // ...then, when motion is allowed, animate the delta for polish.
-      if (prefersReducedMotion() || from === target) return;
-      const dist = from - target;
-      const start = performance.now();
-      const step = (now: number) => {
-        const p = Math.min(1, (now - start) / 300);
-        const eased = 1 - Math.pow(1 - p, 3);
-        rail.scrollLeft = target + dist * (1 - eased);
-        if (p < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
     },
     [pages],
   );
@@ -132,7 +129,7 @@ export default function FeaturedCarousel({ cars }: { cars: CarWithImages[] }) {
         <div className="mb-6 flex items-center justify-end gap-4">
           <span
             aria-live="polite"
-            className="font-mono text-[11px] tabular-nums tracking-[0.12em] text-ash"
+            className="font-num text-[11px] tabular-nums tracking-[0.06em] text-ash"
           >
             {String(page).padStart(2, "0")} / {String(pages).padStart(2, "0")}
           </span>
@@ -141,7 +138,7 @@ export default function FeaturedCarousel({ cars }: { cars: CarWithImages[] }) {
               type="button"
               onClick={() => scrollByPage(-1)}
               aria-label="Previous vehicles"
-              className="flex h-11 w-11 items-center justify-center border border-line text-ink transition-colors hover:bg-ink hover:text-on-ink"
+              className="flex h-11 w-11 items-center justify-center border border-line text-ink transition-colors rounded-l-lg hover:bg-ink hover:text-on-ink"
             >
               <ArrowRightIcon className="h-4 w-4 rotate-180" />
             </button>
@@ -149,7 +146,7 @@ export default function FeaturedCarousel({ cars }: { cars: CarWithImages[] }) {
               type="button"
               onClick={() => scrollByPage(1)}
               aria-label="Next vehicles"
-              className="-ml-px flex h-11 w-11 items-center justify-center border border-line text-ink transition-colors hover:bg-ink hover:text-on-ink"
+              className="-ml-px flex h-11 w-11 items-center justify-center border border-line text-ink transition-colors rounded-r-lg hover:bg-ink hover:text-on-ink"
             >
               <ArrowRightIcon className="h-4 w-4" />
             </button>
@@ -176,10 +173,10 @@ export default function FeaturedCarousel({ cars }: { cars: CarWithImages[] }) {
               className="w-[86%] shrink-0 snap-start sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]"
             >
               <Link
-                href={{ pathname: "/cars", query: { car: car.id } }}
-                className="group card-quiet flex h-full flex-col border border-line bg-surface hover:border-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
+                href={`/vehicles/${car.id}`}
+                className="group card-quiet flex h-full flex-col overflow-hidden rounded-xl border border-line bg-surface hover:border-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
               >
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-surface-2">
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-surface-2 ">
                   {cover && (
                     <Image
                       src={cover.url}
@@ -192,13 +189,15 @@ export default function FeaturedCarousel({ cars }: { cars: CarWithImages[] }) {
                 </div>
                 <div className="flex flex-1 flex-col gap-2 p-5">
                   <p className="font-medium">{title}</p>
-                  <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-ash">
+                  <p className="font-num text-xs uppercase tracking-[0.03em] text-ash">
                     {car.year} · {car.mileage_km.toLocaleString()} km ·{" "}
                     {tEnums(`fuelType.${car.fuel_type}`)}
                   </p>
-                  <p className="mt-auto pt-3 font-mono text-base font-semibold tabular-nums text-ink">
-                    {Number(car.price).toLocaleString()} €
-                  </p>
+                  <div className="mt-auto pt-3">
+                    <span className="inline-flex items-center rounded-full border border-mint-line bg-mint px-3 py-1 font-num text-sm font-semibold tabular-nums text-mint-ink">
+                      {Number(car.price).toLocaleString()} €
+                    </span>
+                  </div>
                 </div>
               </Link>
             </li>

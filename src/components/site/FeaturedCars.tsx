@@ -29,7 +29,7 @@ export default async function FeaturedCars() {
             </h2>
           </div>
           <Link
-            href="/cars"
+            href="/vehicles"
             className="group inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-ink transition-colors hover:text-ash"
           >
             {t("viewAll")}

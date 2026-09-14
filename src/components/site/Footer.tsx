@@ -8,17 +8,17 @@ const MOBILE_HREF = "+306932232929";
 const LANDLINE_DISPLAY = "25310 29470";
 const LANDLINE_HREF = "+302531029470";
 
-// Placeholders — swap in the real profile URLs once the pages exist.
-const INSTAGRAM_URL = "#";
+const INSTAGRAM_URL = "https://www.instagram.com/auto_agelidis/";
+// Placeholder — swap in the real Facebook page URL once it exists.
 const FACEBOOK_URL = "#";
 const CARGR_URL = "https://auto-importagelidis.car.gr/cars/";
-const CARGR_DISPLAY = "auto-importagelidis.car.gr";
+const CARGR_DISPLAY = " Car.gr  ";
 
 const columnHeading =
-  "mb-4 font-mono text-[10px] uppercase tracking-[0.18em] text-on-ink-dim";
+  "mb-4 text-center font-mono text-[10px] uppercase tracking-[0.18em] text-on-ink-dim";
 const linkRow =
   "flex items-center gap-2.5 text-on-ink/65 transition-colors hover:text-on-ink";
-const linkGroup = "flex flex-col items-start gap-3 text-sm";
+const linkGroup = "flex flex-col items-center gap-3 text-center text-sm";
 
 export default async function Footer() {
   const t = await getTranslations("footer");
@@ -50,8 +50,8 @@ export default async function Footer() {
         <div>
           <h3 className={columnHeading}>{t("navHeading")}</h3>
           <nav className={linkGroup}>
-            <Link href="/cars" className="text-on-ink/65 transition-colors hover:text-on-ink">
-              {tNav("cars")}
+            <Link href="/vehicles" className="text-on-ink/65 transition-colors hover:text-on-ink">
+              {tNav("vehicles")}
             </Link>
             <Link href="/#about" className="text-on-ink/65 transition-colors hover:text-on-ink">
               {tNav("about")}
@@ -65,7 +65,12 @@ export default async function Footer() {
         <div>
           <h3 className={columnHeading}>{t("followHeading")}</h3>
           <div className={linkGroup}>
-            <a href={INSTAGRAM_URL} className={linkRow}>
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={linkRow}
+            >
               <InstagramIcon className="h-4 w-4 shrink-0" />
               Instagram
             </a>

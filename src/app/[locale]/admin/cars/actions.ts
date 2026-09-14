@@ -51,6 +51,7 @@ export interface CarFormInput {
   descriptionEn: string | null;
   descriptionGr: string | null;
   features: Feature[];
+  cargrUrl: string | null;
   images: CarImageInput[];
 }
 
@@ -66,6 +67,22 @@ async function requireAdmin() {
   return user;
 }
 
+// The cargr_url migration (supabase/migrations/0002_add_cargr_url.sql) may
+// not be applied to the live database yet. Detect exactly that failure so
+// create/update can fall back to saving everything else — car insertion
+// must keep working either way, and this self-heals once the column exists.
+// PostgREST reports this as PGRST204 ("column ... not found in schema
+// cache") on insert/update; a raw Postgres 42703 can also surface it
+// (e.g. via a select/filter) — check both.
+function isMissingCargrColumn(
+  error: { code?: string; message?: string } | null,
+): boolean {
+  if (!error) return false;
+  const isSchemaOrColumnError =
+    error.code === "PGRST204" || error.code === "42703";
+  return isSchemaOrColumnError && !!error.message?.includes("cargr_url");
+}
+
 export async function createCar(
   input: CarFormInput,
 ): Promise<CarActionResult> {
@@ -76,7 +93,7 @@ export async function createCar(
 
   const admin = createAdminClient();
 
-  const { error: carError } = await admin.from("cars").insert({
+  const carRow = {
     id: input.id,
     vehicle_type: input.vehicleType,
     make: input.make,
@@ -104,7 +121,15 @@ export async function createCar(
     description_en: input.descriptionEn,
     description_gr: input.descriptionGr,
     features: input.features,
-  });
+  };
+
+  let { error: carError } = await admin
+    .from("cars")
+    .insert({ ...carRow, cargr_url: input.cargrUrl });
+
+  if (isMissingCargrColumn(carError)) {
+    ({ error: carError } = await admin.from("cars").insert(carRow));
+  }
 
   if (carError) {
     return { error: carError.message };
@@ -139,37 +164,46 @@ export async function updateCar(
 
   const admin = createAdminClient();
 
-  const { error: carError } = await admin
+  const carUpdate = {
+    vehicle_type: input.vehicleType,
+    make: input.make,
+    model: input.model,
+    trim_en: input.trimEn,
+    trim_gr: input.trimGr,
+    price: input.price,
+    condition: input.condition,
+    category: input.category,
+    year: input.year,
+    month: input.month,
+    mileage_km: input.mileageKm,
+    fuel_type: input.fuelType,
+    engine_cc: input.engineCc,
+    horsepower: input.horsepower,
+    transmission: input.transmission,
+    color: input.color,
+    color_metallic: input.colorMetallic,
+    upholstery: input.upholstery,
+    plate_status: input.plateStatus,
+    drive_type: input.driveType,
+    airbags: input.airbags,
+    doors: input.doors,
+    seats: input.seats,
+    description_en: input.descriptionEn,
+    description_gr: input.descriptionGr,
+    features: input.features,
+  };
+
+  let { error: carError } = await admin
     .from("cars")
-    .update({
-      vehicle_type: input.vehicleType,
-      make: input.make,
-      model: input.model,
-      trim_en: input.trimEn,
-      trim_gr: input.trimGr,
-      price: input.price,
-      condition: input.condition,
-      category: input.category,
-      year: input.year,
-      month: input.month,
-      mileage_km: input.mileageKm,
-      fuel_type: input.fuelType,
-      engine_cc: input.engineCc,
-      horsepower: input.horsepower,
-      transmission: input.transmission,
-      color: input.color,
-      color_metallic: input.colorMetallic,
-      upholstery: input.upholstery,
-      plate_status: input.plateStatus,
-      drive_type: input.driveType,
-      airbags: input.airbags,
-      doors: input.doors,
-      seats: input.seats,
-      description_en: input.descriptionEn,
-      description_gr: input.descriptionGr,
-      features: input.features,
-    })
+    .update({ ...carUpdate, cargr_url: input.cargrUrl })
     .eq("id", input.id);
+
+  if (isMissingCargrColumn(carError)) {
+    ({ error: carError } = await admin
+      .from("cars")
+      .update(carUpdate)
+      .eq("id", input.id));
+  }
 
   if (carError) {
     return { error: carError.message };

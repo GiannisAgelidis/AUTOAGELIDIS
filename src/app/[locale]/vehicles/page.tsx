@@ -4,7 +4,6 @@ import Header from "@/components/site/Header";
 import Footer from "@/components/site/Footer";
 import CarFilters from "@/components/cars/CarFilters";
 import CarCard from "@/components/cars/CarCard";
-import CarDetailModal from "@/components/cars/CarDetailModal";
 import type { CarWithImages } from "@/lib/supabase/types";
 
 type SearchParams = { [key: string]: string | undefined };
@@ -53,10 +52,6 @@ export default async function CarsPage({
     new Set(allCars.map((car) => car.make)),
   ).sort();
   const filteredCars = filterCars(allCars, resolvedSearchParams);
-  const selectedCarId = resolvedSearchParams.car;
-  const selectedCar = selectedCarId
-    ? allCars.find((car) => car.id === selectedCarId)
-    : undefined;
 
   return (
     <>
@@ -72,20 +67,24 @@ export default async function CarsPage({
             </p>
           </div>
 
-          <CarFilters availableMakes={availableMakes} />
+          <div className="lg:grid lg:grid-cols-[18rem_1fr] lg:gap-10">
+            <CarFilters availableMakes={availableMakes} />
 
-          {filteredCars.length === 0 ? (
-            <p className="py-12 text-center text-sm text-ash">{t("noResults")}</p>
-          ) : (
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {filteredCars.map((car) => (
-                <CarCard key={car.id} car={car} />
-              ))}
+            <div>
+              {filteredCars.length === 0 ? (
+                <p className="py-12 text-center text-sm text-ash">
+                  {t("noResults")}
+                </p>
+              ) : (
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+                  {filteredCars.map((car) => (
+                    <CarCard key={car.id} car={car} />
+                  ))}
+                </div>
+              )}
             </div>
-          )}
+          </div>
         </div>
-
-        {selectedCar && <CarDetailModal key={selectedCar.id} car={selectedCar} />}
       </main>
       <Footer />
     </>

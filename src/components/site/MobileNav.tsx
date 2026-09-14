@@ -33,15 +33,8 @@ export default function MobileNav() {
           <Link href="/#about" onClick={close} className={itemClass}>
             {t("about")}
           </Link>
-          <Link href="/cars" onClick={close} className={itemClass}>
-            {t("cars")}
-          </Link>
-          <Link
-            href={{ pathname: "/cars", query: { vehicleType: "truck" } }}
-            onClick={close}
-            className={itemClass}
-          >
-            {t("trucks")}
+          <Link href="/vehicles" onClick={close} className={itemClass}>
+            {t("vehicles")}
           </Link>
           <Link href="/#contact" onClick={close} className={itemClass}>
             {t("contact")}

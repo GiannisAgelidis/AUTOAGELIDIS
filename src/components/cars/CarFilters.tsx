@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import {
@@ -13,9 +13,17 @@ import {
 } from "@/lib/enums";
 
 const inputClass =
-  "w-full border border-line bg-surface px-3 py-2 text-sm text-ink transition-colors focus:border-ink focus:outline-none";
+  "w-full rounded-lg border border-line bg-surface px-3 py-2 text-sm text-ink transition-colors focus:border-ink focus:outline-none";
 const labelClass =
   "mb-1 block font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-ash";
+
+// Fixed dropdown steps for the range filters.
+const PRICE_OPTIONS = Array.from({ length: 30 }, (_, i) => (i + 1) * 1000); // 1.000 – 30.000
+const YEAR_OPTIONS = Array.from(
+  { length: 2026 - 1999 + 1 },
+  (_, i) => 2026 - i,
+); // 2026 – 1999 (newest first)
+const MILEAGE_OPTIONS = Array.from({ length: 50 }, (_, i) => (i + 1) * 10000); // 10.000 – 500.000
 
 export default function CarFilters({
   availableMakes,
@@ -24,9 +32,13 @@ export default function CarFilters({
 }) {
   const t = useTranslations("cars.filters");
   const tEnums = useTranslations("enums");
+  const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+
+  const groupNum = (n: number) =>
+    n.toLocaleString(locale === "el" ? "el-GR" : "en-US");
 
   const vehicleType = searchParams.get("vehicleType") ?? "";
   const category = searchParams.get("category") ?? "";
@@ -48,8 +60,27 @@ export default function CarFilters({
     [pathname, router, searchParams],
   );
 
+  const rangeSelect = (
+    param: string,
+    options: number[],
+    format: (n: number) => string,
+  ) => (
+    <select
+      className={inputClass}
+      value={searchParams.get(param) ?? ""}
+      onChange={(e) => setParam(param, e.target.value)}
+    >
+      <option value="">—</option>
+      {options.map((n) => (
+        <option key={n} value={n}>
+          {format(n)}
+        </option>
+      ))}
+    </select>
+  );
+
   return (
-    <div className="mb-8 border border-line bg-surface p-5">
+    <div className="mb-8 rounded-xl border border-line bg-surface p-5 lg:mb-0 lg:sticky lg:top-24 lg:self-start lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-ink">
           {t("title")}
@@ -57,33 +88,33 @@ export default function CarFilters({
         <button
           type="button"
           onClick={() => router.push(pathname, { scroll: false })}
-          className="font-mono text-[10px] uppercase tracking-[0.14em] text-ash underline underline-offset-4 transition-colors hover:text-ink"
+          className={`font-mono uppercase text-ash underline underline-offset-4 transition-colors hover:text-ink ${
+            locale === "el"
+              ? "text-[8.5px] tracking-[0.02em]"
+              : "text-[10px] tracking-[0.14em]"
+          }`}
         >
           {t("reset")}
         </button>
       </div>
 
-      {/* Segmented control — vehicle type */}
-      <div className="mb-4 inline-flex border border-line">
-        {["", ...VEHICLE_TYPES].map((v, i) => (
-          <button
-            key={v || "all"}
-            type="button"
-            onClick={() => setParam("vehicleType", v)}
-            className={`px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.12em] transition-colors ${
-              i > 0 ? "border-l border-line" : ""
-            } ${
-              vehicleType === v
-                ? "bg-ink text-on-ink"
-                : "bg-surface text-ash hover:text-ink"
-            }`}
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-1">
+        <div>
+          <label className={labelClass}>{t("vehicleType")}</label>
+          <select
+            className={inputClass}
+            value={vehicleType}
+            onChange={(e) => setParam("vehicleType", e.target.value)}
           >
-            {v ? tEnums(`vehicleType.${v}`) : t("allVehicleTypes")}
-          </button>
-        ))}
-      </div>
+            <option value="">{t("allVehicleTypes")}</option>
+            {VEHICLE_TYPES.map((v) => (
+              <option key={v} value={v}>
+                {tEnums(`vehicleType.${v}`)}
+              </option>
+            ))}
+          </select>
+        </div>
 
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
         <div>
           <label className={labelClass}>{t("category")}</label>
           <select
@@ -118,65 +149,29 @@ export default function CarFilters({
 
         <div>
           <label className={labelClass}>{t("priceMin")}</label>
-          <input
-            type="number"
-            min={0}
-            className={inputClass}
-            value={searchParams.get("priceMin") ?? ""}
-            onChange={(e) => setParam("priceMin", e.target.value)}
-          />
+          {rangeSelect("priceMin", PRICE_OPTIONS, (n) => `${groupNum(n)} €`)}
         </div>
         <div>
           <label className={labelClass}>{t("priceMax")}</label>
-          <input
-            type="number"
-            min={0}
-            className={inputClass}
-            value={searchParams.get("priceMax") ?? ""}
-            onChange={(e) => setParam("priceMax", e.target.value)}
-          />
+          {rangeSelect("priceMax", PRICE_OPTIONS, (n) => `${groupNum(n)} €`)}
         </div>
 
         <div>
           <label className={labelClass}>{t("yearMin")}</label>
-          <input
-            type="number"
-            min={1900}
-            className={inputClass}
-            value={searchParams.get("yearMin") ?? ""}
-            onChange={(e) => setParam("yearMin", e.target.value)}
-          />
+          {rangeSelect("yearMin", YEAR_OPTIONS, (n) => String(n))}
         </div>
         <div>
           <label className={labelClass}>{t("yearMax")}</label>
-          <input
-            type="number"
-            min={1900}
-            className={inputClass}
-            value={searchParams.get("yearMax") ?? ""}
-            onChange={(e) => setParam("yearMax", e.target.value)}
-          />
+          {rangeSelect("yearMax", YEAR_OPTIONS, (n) => String(n))}
         </div>
 
         <div>
           <label className={labelClass}>{t("mileageMin")}</label>
-          <input
-            type="number"
-            min={0}
-            className={inputClass}
-            value={searchParams.get("mileageMin") ?? ""}
-            onChange={(e) => setParam("mileageMin", e.target.value)}
-          />
+          {rangeSelect("mileageMin", MILEAGE_OPTIONS, (n) => `${groupNum(n)} km`)}
         </div>
         <div>
           <label className={labelClass}>{t("mileageMax")}</label>
-          <input
-            type="number"
-            min={0}
-            className={inputClass}
-            value={searchParams.get("mileageMax") ?? ""}
-            onChange={(e) => setParam("mileageMax", e.target.value)}
-          />
+          {rangeSelect("mileageMax", MILEAGE_OPTIONS, (n) => `${groupNum(n)} km`)}
         </div>
 
         <div>

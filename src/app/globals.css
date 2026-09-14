@@ -31,6 +31,11 @@
   /* Text on dark */
   --color-on-ink: #fafafa;
   --color-on-ink-dim: #a1a1aa;
+
+  /* Price accent — light green */
+  --color-mint: #e7f6ec;
+  --color-mint-line: #c3e6ce;
+  --color-mint-ink: #15803d;
 }
 
 @theme inline {
@@ -38,6 +43,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-app-sans);
   --font-mono: var(--font-app-mono);
+  --font-num: Arial, Helvetica, "Helvetica Neue", "Liberation Sans", sans-serif;
 
   --color-paper: var(--color-paper);
   --color-surface: var(--color-surface);
@@ -50,6 +56,9 @@
   --color-line-dark: var(--color-line-dark);
   --color-on-ink: var(--color-on-ink);
   --color-on-ink-dim: var(--color-on-ink-dim);
+  --color-mint: var(--color-mint);
+  --color-mint-line: var(--color-mint-line);
+  --color-mint-ink: var(--color-mint-ink);
 
   --radius-none: 0px;
 }
@@ -157,6 +166,41 @@ body {
 
 .rail::-webkit-scrollbar {
   display: none;
+}
+
+/*
+ * Vehicle detail page — gallery + specs stay in one left column, the
+ * price/contact panel pins to the right and stays put while that column
+ * scrolls. On mobile everything is a single stack in source order
+ * (gallery → panel → specs), so no grid-area wiring is needed there.
+ */
+.vehicle-grid {
+  display: grid;
+  gap: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .vehicle-grid {
+    grid-template-columns: 1fr 21rem;
+    grid-template-areas: "gallery sidebar" "details sidebar";
+    column-gap: 3.5rem;
+    row-gap: 3rem;
+    align-items: start;
+  }
+
+  .vehicle-grid > .vg-gallery {
+    grid-area: gallery;
+  }
+
+  .vehicle-grid > .vg-sidebar {
+    grid-area: sidebar;
+    position: sticky;
+    top: 6rem;
+  }
+
+  .vehicle-grid > .vg-details {
+    grid-area: details;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

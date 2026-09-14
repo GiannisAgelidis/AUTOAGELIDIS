@@ -35,8 +35,8 @@ export default async function Location() {
   ];
 
   return (
-    <section id="location" className="bg-ink text-on-ink">
-      <Reveal className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-12 px-6 py-24 md:grid-cols-2">
+    <section id="location" className="relative overflow-hidden bg-ink text-on-ink">
+      <Reveal className="relative mx-auto grid w-full max-w-6xl grid-cols-1 gap-12 px-6 py-24 md:grid-cols-2">
         <div className="flex flex-col gap-6">
           <Tag tone="on-ink">{t("eyebrow")}</Tag>
           <h2 className="text-3xl font-normal tracking-[-0.02em] sm:text-4xl">
@@ -65,16 +65,28 @@ export default async function Location() {
           </a>
         </div>
 
-        <div className="min-h-[300px] overflow-hidden border border-line-dark rounded-xl">
-          <iframe
-            title={t("title")}
-            src={`https://www.google.com/maps?q=${MAP_QUERY}&output=embed`}
-            width="100%"
-            height="100%"
-            style={{ border: 0, minHeight: 300 }}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
+        <div className="relative">
+          {/* Soft backlight bleeding out from behind the map */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -inset-12"
+            style={{
+              background:
+                "radial-gradient(ellipse at center, rgba(255,255,255,0.18), rgba(255,255,255,0.05) 45%, transparent 72%)",
+              filter: "blur(28px)",
+            }}
           />
+          <div className="relative min-h-[300px] overflow-hidden rounded-xl border border-white/15">
+            <iframe
+              title={t("title")}
+              src={`https://www.google.com/maps?q=${MAP_QUERY}&output=embed`}
+              width="100%"
+              height="100%"
+              style={{ border: 0, minHeight: 300 }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
         </div>
       </Reveal>
     </section>

@@ -21,7 +21,7 @@ export default async function Hero() {
     <section className="relative overflow-hidden bg-ink text-on-ink">
       <div aria-hidden className="absolute inset-0">
         <IKVideo
-          src="/AutoAgelidis/2.mp4"
+          src="/AutoAgelidis/5.mp4"
           autoPlay
           muted
           loop
@@ -29,7 +29,7 @@ export default async function Hero() {
           preload="auto"
           className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-ink/20" />
+        <div className="absolute inset-0 bg-ink/50" />
       </div>
 
       <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 pb-24 pt-16 md:pt-28">
@@ -60,7 +60,7 @@ export default async function Hero() {
           style={{ "--enter-delay": "240ms" } as React.CSSProperties}
         >
           <Link
-            href="/cars"
+            href="/vehicles"
             className="group inline-flex items-center gap-2 bg-on-ink px-6 py-3.5 font-mono text-xs uppercase tracking-[0.14em] text-ink transition-colors hover:bg-on-ink-dim"
           >
             {t("cta")}
@@ -75,7 +75,7 @@ export default async function Hero() {
         </div>
 
         <dl
-          className="hero-enter mt-6 grid max-w-2xl grid-cols-1 border-t border-line-dark font-mono sm:grid-cols-3 sm:divide-x sm:divide-line-dark"
+          className="hero-enter mt-6 grid max-w-2xl grid-cols-1 border-t border-line-dark font-num sm:grid-cols-3 sm:divide-x sm:divide-line-dark"
           style={{ "--enter-delay": "320ms" } as React.CSSProperties}
         >
           {stats.map((s) => (
