@@ -56,7 +56,9 @@
     "message": "Message",
     "send": "Send",
     "success": "Your message has been sent.",
-    "error": "Something went wrong. Please try again.",
+    "successSub": "We'll get back to you soon.",
+    "error": "Something went wrong.",
+    "errorSub": "Please try again.",
     "privacyNote": "Your details go straight to Auto Agelidis and are only used to reply to your message."
   },
   "footer": {
@@ -71,6 +73,13 @@
     "resultsCount": "{count, plural, =0 {No vehicles} one {# vehicle} other {# vehicles}}",
     "filters": {
       "title": "Filters",
+      "sort": "Sort by",
+      "sortDateDesc": "Newest first",
+      "sortDateAsc": "Oldest first",
+      "sortPriceAsc": "Price: low to high",
+      "sortPriceDesc": "Price: high to low",
+      "sortMileageAsc": "Mileage: low to high",
+      "sortMileageDesc": "Mileage: high to low",
       "vehicleType": "Type",
       "allVehicleTypes": "All",
       "category": "Category",
@@ -223,7 +232,14 @@
       "email": "Email",
       "password": "Password",
       "submit": "Log in",
-      "error": "Invalid credentials."
+      "error": "Invalid credentials.",
+      "sendError": "Could not send the confirmation email. Please try again.",
+      "rateLimited": "Too many email requests — please wait a few minutes and try again.",
+      "forgotPassword": "Forgot password?",
+      "resetSent": "Check your email for a link to set a new password.",
+      "checkEmail": "Check your email — click the link we sent you to finish signing in.",
+      "confirmError": "That link is invalid or has expired. Please log in again.",
+      "backToLogin": "Back to login"
     },
     "dashboard": {
       "title": "Admin dashboard",
@@ -237,13 +253,11 @@
     "account": {
       "title": "Change password",
       "signedInAs": "Signed in as",
-      "newPassword": "New password",
-      "confirmPassword": "Confirm password",
-      "submit": "Update password",
-      "success": "Password updated successfully.",
+      "changeIntro": "We'll email you a link to set a new password.",
+      "sendReset": "Send password reset email",
+      "resetSent": "Check your email for a link to set a new password.",
       "error": "Something went wrong. Please try again.",
-      "mismatch": "Passwords don't match.",
-      "tooShort": "Password must be at least 8 characters.",
+      "rateLimited": "Too many email requests — please wait a few minutes and try again.",
       "backToDashboard": "Back to dashboard"
     },
     "form": {

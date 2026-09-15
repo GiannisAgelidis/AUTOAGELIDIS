@@ -32,7 +32,7 @@ export default async function AccountPage({
             {t("signedInAs")} {user.email}
           </p>
         )}
-        <ChangePasswordForm />
+        {user?.email && <ChangePasswordForm email={user.email} />}
       </div>
     </main>
   );

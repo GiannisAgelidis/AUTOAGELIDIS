@@ -8,6 +8,44 @@ import type { CarWithImages } from "@/lib/supabase/types";
 
 type SearchParams = { [key: string]: string | undefined };
 
+const SORT_OPTIONS = [
+  "date_desc",
+  "date_asc",
+  "price_asc",
+  "price_desc",
+  "mileage_asc",
+  "mileage_desc",
+] as const;
+type SortOption = (typeof SORT_OPTIONS)[number];
+
+// Year/month of the car's own spec (not when it was added to the DB) — a
+// missing month sorts as the start of that year.
+function yearMonth(car: CarWithImages) {
+  return car.year * 12 + (car.month ?? 0);
+}
+
+function sortCars(cars: CarWithImages[], sort: string | undefined) {
+  const key = (SORT_OPTIONS as readonly string[]).includes(sort ?? "")
+    ? (sort as SortOption)
+    : "date_desc";
+  const sorted = [...cars];
+
+  switch (key) {
+    case "date_asc":
+      return sorted.sort((a, b) => yearMonth(a) - yearMonth(b));
+    case "date_desc":
+      return sorted.sort((a, b) => yearMonth(b) - yearMonth(a));
+    case "price_asc":
+      return sorted.sort((a, b) => a.price - b.price);
+    case "price_desc":
+      return sorted.sort((a, b) => b.price - a.price);
+    case "mileage_asc":
+      return sorted.sort((a, b) => a.mileage_km - b.mileage_km);
+    case "mileage_desc":
+      return sorted.sort((a, b) => b.mileage_km - a.mileage_km);
+  }
+}
+
 function filterCars(cars: CarWithImages[], params: SearchParams) {
   return cars.filter((car) => {
     if (params.vehicleType && car.vehicle_type !== params.vehicleType)
@@ -51,7 +89,10 @@ export default async function CarsPage({
   const availableMakes = Array.from(
     new Set(allCars.map((car) => car.make)),
   ).sort();
-  const filteredCars = filterCars(allCars, resolvedSearchParams);
+  const filteredCars = sortCars(
+    filterCars(allCars, resolvedSearchParams),
+    resolvedSearchParams.sort,
+  );
 
   return (
     <>

@@ -4,46 +4,9 @@ import { useEffect, useState, type FormEvent } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { establishSessionFromUrl } from "@/lib/supabase/session-from-url";
 
 type SessionStatus = "verifying" | "ready" | "failed";
-
-/**
- * Supabase's invite/recovery redirect can land here with either a PKCE
- * `?code=` query param or a legacy `#access_token=&refresh_token=` hash —
- * which one depends on project auth settings. supabase-js's automatic
- * detectSessionInUrl doesn't reliably win the race against this page's own
- * render, so both cases are exchanged for a session explicitly on mount.
- */
-async function establishSessionFromUrl(): Promise<boolean> {
-  const supabase = createClient();
-  const url = new URL(window.location.href);
-  const code = url.searchParams.get("code");
-
-  if (code) {
-    const { error } = await supabase.auth.exchangeCodeForSession(code);
-    window.history.replaceState({}, "", url.pathname);
-    return !error;
-  }
-
-  const hashParams = new URLSearchParams(window.location.hash.slice(1));
-  const accessToken = hashParams.get("access_token");
-  const refreshToken = hashParams.get("refresh_token");
-
-  if (accessToken && refreshToken) {
-    const { error } = await supabase.auth.setSession({
-      access_token: accessToken,
-      refresh_token: refreshToken,
-    });
-    window.history.replaceState({}, "", url.pathname);
-    return !error;
-  }
-
-  // No tokens in the URL — maybe a session already exists (e.g. page refresh).
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-  return !!session;
-}
 
 export default function SetPasswordPage() {
   const t = useTranslations("admin.login");

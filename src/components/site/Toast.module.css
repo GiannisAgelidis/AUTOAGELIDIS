@@ -1,0 +1,126 @@
+.wrapper {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 200;
+  animation: slideIn 0.25s ease-out;
+}
+
+.card {
+  width: 330px;
+  max-width: calc(100vw - 2.5rem);
+  height: 80px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 10px 15px;
+  background-color: #ffffff;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 15px;
+}
+
+.wave {
+  position: absolute;
+  transform: rotate(90deg);
+  left: -31px;
+  top: 32px;
+  width: 80px;
+}
+
+.card.success .wave {
+  fill: #04e4003a;
+}
+
+.card.error .wave {
+  fill: #fc0c0c3a;
+}
+
+.iconContainer {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+
+.card.success .iconContainer {
+  background-color: #04e40048;
+}
+
+.card.error .iconContainer {
+  background-color: #fc0c0c48;
+}
+
+.icon {
+  width: 17px;
+  height: 17px;
+}
+
+.card.success .icon {
+  color: #269b24;
+}
+
+.card.error .icon {
+  color: #d10d0d;
+}
+
+.messageTextContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.messageText,
+.subText {
+  margin: 0;
+  cursor: default;
+}
+
+.messageText {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.card.success .messageText {
+  color: #269b24;
+}
+
+.card.error .messageText {
+  color: #d10d0d;
+}
+
+.subText {
+  font-size: 11px;
+  line-height: 1.3;
+  color: #555;
+}
+
+.crossIcon {
+  width: 18px;
+  height: 18px;
+  color: #555;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

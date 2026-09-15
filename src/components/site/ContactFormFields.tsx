@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useCallback, useState, type FormEvent } from "react";
 import { useTranslations } from "next-intl";
+import Toast, { type ToastVariant } from "./Toast";
 
 const inputClass =
   "w-full border border-line bg-surface px-3.5 py-2.5 text-sm text-ink placeholder:text-ash/60 transition-colors focus:border-ink focus:outline-none";
@@ -22,6 +23,8 @@ export default function ContactFormFields({
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle",
   );
+  const [toast, setToast] = useState<ToastVariant | null>(null);
+  const closeToast = useCallback(() => setToast(null), []);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -40,9 +43,11 @@ export default function ContactFormFields({
       if (!res.ok) throw new Error("failed");
 
       setStatus("sent");
+      setToast("success");
       form.reset();
     } catch {
       setStatus("error");
+      setToast("error");
     }
   }
 
@@ -91,17 +96,6 @@ export default function ContactFormFields({
 
       <p className="text-xs leading-relaxed text-ash">{t("privacyNote")}</p>
 
-      {status === "sent" && (
-        <p className="font-mono text-xs uppercase tracking-[0.1em] text-ink">
-          {t("success")}
-        </p>
-      )}
-      {status === "error" && (
-        <p className="font-mono text-xs uppercase tracking-[0.1em] text-ash">
-          {t("error")}
-        </p>
-      )}
-
       <button
         type="submit"
         disabled={status === "sending"}
@@ -109,6 +103,15 @@ export default function ContactFormFields({
       >
         {t("send")}
       </button>
+
+      {toast && (
+        <Toast
+          variant={toast}
+          title={toast === "success" ? t("success") : t("error")}
+          subtitle={toast === "success" ? t("successSub") : t("errorSub")}
+          onClose={closeToast}
+        />
+      )}
     </form>
   );
 }

@@ -100,6 +100,22 @@ export default function CarFilters({
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-1">
         <div>
+          <label className={labelClass}>{t("sort")}</label>
+          <select
+            className={inputClass}
+            value={searchParams.get("sort") ?? "date_desc"}
+            onChange={(e) => setParam("sort", e.target.value)}
+          >
+            <option value="date_desc">{t("sortDateDesc")}</option>
+            <option value="date_asc">{t("sortDateAsc")}</option>
+            <option value="price_asc">{t("sortPriceAsc")}</option>
+            <option value="price_desc">{t("sortPriceDesc")}</option>
+            <option value="mileage_asc">{t("sortMileageAsc")}</option>
+            <option value="mileage_desc">{t("sortMileageDesc")}</option>
+          </select>
+        </div>
+
+        <div>
           <label className={labelClass}>{t("vehicleType")}</label>
           <select
             className={inputClass}
