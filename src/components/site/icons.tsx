@@ -120,6 +120,23 @@ export function MenuIcon({ className = "" }: { className?: string }) {
   );
 }
 
+export function ExpandIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.75}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden
+    >
+      <path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5" />
+    </svg>
+  );
+}
+
 export function CloseIcon({ className = "" }: { className?: string }) {
   return (
     <svg

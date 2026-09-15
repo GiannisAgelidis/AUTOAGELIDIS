@@ -89,6 +89,8 @@ export default function ContactFormFields({
         />
       </div>
 
+      <p className="text-xs leading-relaxed text-ash">{t("privacyNote")}</p>
+
       {status === "sent" && (
         <p className="font-mono text-xs uppercase tracking-[0.1em] text-ink">
           {t("success")}

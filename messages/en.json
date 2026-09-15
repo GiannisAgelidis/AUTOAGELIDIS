@@ -56,7 +56,8 @@
     "message": "Message",
     "send": "Send",
     "success": "Your message has been sent.",
-    "error": "Something went wrong. Please try again."
+    "error": "Something went wrong. Please try again.",
+    "privacyNote": "Your details go straight to Auto Agelidis and are only used to reply to your message."
   },
   "footer": {
     "rights": "All rights reserved.",
