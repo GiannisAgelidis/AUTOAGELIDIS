@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { Image as IKImage } from "@imagekit/next";
 import ScrollLink from "./ScrollLink";
 import Tag from "./Tag";
 import Reveal from "./Reveal";
@@ -14,10 +15,20 @@ export default async function Faq() {
   const questions = t.raw("questions") as FaqEntry[];
 
   return (
-    <section id="faq" className="texture-ink relative overflow-hidden bg-ink text-on-ink">
+    <section id="faq" className="relative overflow-hidden bg-ink text-on-ink">
+      <IKImage
+        src="/AutoAgelidis/FAQ.jpg"
+        alt=""
+        aria-hidden
+        fill
+        sizes="100vw"
+        className="object-cover"
+      />
+      <div aria-hidden className="absolute inset-0 bg-ink/70" />
+
       <Reveal className="relative mx-auto grid w-full max-w-6xl grid-cols-1 gap-12 px-6 py-24 md:grid-cols-2">
         {/* Mirrors the location section below: image on the left, text on the right. */}
-        <div className="relative order-2 md:order-1">
+        <div className="relative order-2 h-full md:order-1">
           {/* Soft backlight, matching the map treatment in the location section */}
           <div
             aria-hidden
@@ -28,20 +39,14 @@ export default async function Faq() {
               filter: "blur(28px)",
             }}
           />
-          <div className="relative flex min-h-[300px] items-center justify-center overflow-hidden rounded-xl border border-white/15 bg-white/5">
-            {/* Placeholder — swap for a real image */}
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.2"
-              className="h-16 w-16 text-on-ink-dim"
-              aria-hidden
-            >
-              <rect x="3" y="4" width="18" height="16" rx="1.5" />
-              <circle cx="8.5" cy="9.5" r="1.5" />
-              <path d="M21 16l-5.5-5.5a1.5 1.5 0 0 0-2.12 0L4 19" />
-            </svg>
+          <div className="relative h-full min-h-[300px] overflow-hidden rounded-xl border border-white/15">
+            <IKImage
+              src="/AutoAgelidis/faq3.jpg"
+              alt=""
+              fill
+              sizes="(max-width: 768px) 100vw, 33vw"
+              className="object-cover"
+            />
           </div>
         </div>
 
