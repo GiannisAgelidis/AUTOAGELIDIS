@@ -103,12 +103,6 @@ body {
   animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.hero-enter {
-  opacity: 0;
-  animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  animation-delay: var(--enter-delay, 0ms);
-}
-
 /* Faint wordmark drift */
 @keyframes drift {
   0%,
@@ -212,8 +206,7 @@ body {
     scroll-behavior: auto;
   }
 
-  .reveal,
-  .hero-enter {
+  .reveal {
     opacity: 1;
     transform: none;
     animation: none;

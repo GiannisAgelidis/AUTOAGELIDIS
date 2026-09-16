@@ -5,6 +5,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import ScrollLink from "./ScrollLink";
 import Tag from "./Tag";
+import Reveal from "./Reveal";
 import { ArrowRightIcon } from "./icons";
 
 export default async function Hero() {
@@ -63,32 +64,23 @@ export default async function Hero() {
       </div>
 
       <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 pb-24 pt-16 md:pt-28">
-        <Tag
-          tone="on-ink"
-          className="hero-enter"
-          style={{ "--enter-delay": "0ms" } as React.CSSProperties}
-        >
-          {t("eyebrow")}
-        </Tag>
+        <Reveal delay={0}>
+          <Tag tone="on-ink">{t("eyebrow")}</Tag>
+        </Reveal>
 
-        <h1
-          className="hero-enter max-w-4xl whitespace-pre-line text-[2.75rem] font-normal leading-[1.04] tracking-[-0.03em] sm:text-6xl md:text-[4.5rem]"
-          style={{ "--enter-delay": "80ms" } as React.CSSProperties}
-        >
-          {t("title")}
-        </h1>
+        <Reveal delay={80}>
+          <h1 className="max-w-4xl whitespace-pre-line text-[2.75rem] font-normal leading-[1.04] tracking-[-0.03em] sm:text-6xl md:text-[4.5rem]">
+            {t("title")}
+          </h1>
+        </Reveal>
 
-        <p
-          className="hero-enter max-w-xl text-lg leading-relaxed text-on-ink-dim text-white/70"
-          style={{ "--enter-delay": "160ms" } as React.CSSProperties}
-        >
-          {t("subtitle")}
-        </p>
+        <Reveal delay={160}>
+          <p className="max-w-xl text-lg leading-relaxed text-on-ink-dim text-white/70">
+            {t("subtitle")}
+          </p>
+        </Reveal>
 
-        <div
-          className="hero-enter flex flex-wrap items-center gap-3"
-          style={{ "--enter-delay": "240ms" } as React.CSSProperties}
-        >
+        <Reveal delay={240} className="flex flex-wrap items-center gap-3">
           <Link
             href="/cars"
             className="group inline-flex items-center gap-2 bg-on-ink px-6 py-3.5 font-mono text-xs uppercase tracking-[0.14em] text-ink transition-colors hover:bg-on-ink-dim"
@@ -102,26 +94,25 @@ export default async function Hero() {
           >
             {t("ctaSecondary")}
           </ScrollLink>
-        </div>
+        </Reveal>
 
-        <dl
-          className="hero-enter mt-6 grid max-w-2xl grid-cols-1 border-t border-line-dark font-mono sm:grid-cols-3 sm:divide-x sm:divide-line-dark"
-          style={{ "--enter-delay": "320ms" } as React.CSSProperties}
-        >
-          {stats.map((s) => (
-            <div
-              key={s.k}
-              className="border-b border-line-dark py-5 sm:border-b-0 sm:px-5 sm:first:pl-0"
-            >
-              <dt className="text-[10px] uppercase tracking-[0.18em] text-on-ink-dim">
-                {s.label}
-              </dt>
-              <dd className="mt-2 text-xl font-medium tabular-nums text-on-ink">
-                {s.value}
-              </dd>
-            </div>
-          ))}
-        </dl>
+        <Reveal delay={320}>
+          <dl className="mt-6 grid max-w-2xl grid-cols-1 border-t border-line-dark font-mono sm:grid-cols-3 sm:divide-x sm:divide-line-dark">
+            {stats.map((s) => (
+              <div
+                key={s.k}
+                className="border-b border-line-dark py-5 sm:border-b-0 sm:px-5 sm:first:pl-0"
+              >
+                <dt className="text-[10px] uppercase tracking-[0.18em] text-on-ink-dim">
+                  {s.label}
+                </dt>
+                <dd className="mt-2 text-xl font-medium tabular-nums text-on-ink">
+                  {s.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </Reveal>
       </div>
     </section>
   );
