@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { MailIcon, PhoneIcon, InstagramIcon, FacebookIcon, CarIcon } from "./icons";
 
@@ -14,8 +14,18 @@ const FACEBOOK_URL = "#";
 const CARGR_URL = "https://auto-importagelidis.car.gr/cars/";
 const CARGR_DISPLAY = " Car.gr  ";
 
-const columnHeading =
-  "mb-4 text-center font-mono text-[10px] uppercase tracking-[0.18em] text-on-ink-dim";
+/**
+ * Geist Mono only loads the `latin` subset (see layout.tsx) — Greek
+ * headings silently fall back to a taller-looking system font at the same
+ * declared size, making the real Geist Mono glyphs used for English look
+ * noticeably smaller by comparison. Bump the English size to match the
+ * Greek fallback's rendered cap-height instead of shrinking Greek.
+ */
+function columnHeading(locale: string) {
+  return `mb-4 text-center font-mono uppercase tracking-[0.18em] text-on-ink-dim ${
+    locale === "el" ? "text-[10px]" : "text-[13px]"
+  }`;
+}
 const linkRow =
   "flex items-center gap-2.5 text-on-ink/65 transition-colors hover:text-on-ink";
 const linkGroup = "flex flex-col items-center gap-3 text-center text-sm";
@@ -24,13 +34,14 @@ export default async function Footer() {
   const t = await getTranslations("footer");
   const tNav = await getTranslations("nav");
   const tBrand = await getTranslations("brand");
+  const locale = await getLocale();
   const year = new Date().getFullYear();
 
   return (
     <footer className="border-t border-line-dark bg-ink text-on-ink">
       <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 px-6 py-16 sm:grid-cols-3">
         <div>
-          <h3 className={columnHeading}>{t("contactHeading")}</h3>
+          <h3 className={columnHeading(locale)}>{t("contactHeading")}</h3>
           <div className={linkGroup}>
             <a href={`mailto:${EMAIL}`} className={linkRow}>
               <MailIcon className="h-4 w-4 shrink-0" />
@@ -48,7 +59,7 @@ export default async function Footer() {
         </div>
 
         <div>
-          <h3 className={columnHeading}>{t("navHeading")}</h3>
+          <h3 className={columnHeading(locale)}>{t("navHeading")}</h3>
           <nav className={linkGroup}>
             <Link href="/vehicles" className="text-on-ink/65 transition-colors hover:text-on-ink">
               {tNav("vehicles")}
@@ -63,7 +74,7 @@ export default async function Footer() {
         </div>
 
         <div>
-          <h3 className={columnHeading}>{t("followHeading")}</h3>
+          <h3 className={columnHeading(locale)}>{t("followHeading")}</h3>
           <div className={linkGroup}>
             <a
               href={INSTAGRAM_URL}

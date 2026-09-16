@@ -60,7 +60,7 @@ export default async function Hero() {
           style={{ "--enter-delay": "240ms" } as React.CSSProperties}
         >
           <Link
-            href="/vehicles"
+            href="/cars"
             className="group inline-flex items-center gap-2 bg-on-ink px-6 py-3.5 font-mono text-xs uppercase tracking-[0.14em] text-ink transition-colors hover:bg-on-ink-dim"
           >
             {t("cta")}
@@ -75,7 +75,7 @@ export default async function Hero() {
         </div>
 
         <dl
-          className="hero-enter mt-6 grid max-w-2xl grid-cols-1 border-t border-line-dark font-num sm:grid-cols-3 sm:divide-x sm:divide-line-dark"
+          className="hero-enter mt-6 grid max-w-2xl grid-cols-1 border-t border-line-dark font-mono sm:grid-cols-3 sm:divide-x sm:divide-line-dark"
           style={{ "--enter-delay": "320ms" } as React.CSSProperties}
         >
           {stats.map((s) => (
@@ -87,7 +87,7 @@ export default async function Hero() {
                 {s.label}
               </dt>
               <dd className="mt-2 text-xl font-medium tabular-nums text-on-ink">
-                {s.value}
+                  
               </dd>
             </div>
           ))}

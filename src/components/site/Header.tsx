@@ -16,15 +16,15 @@ export default async function Header() {
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-6 px-6 py-3">
         <Link href="/" className="flex shrink-0 items-center" aria-label="Auto Agelidis">
           <IKImage
-            src="/AutoAgelidis/AUTO AGELIDIS-3.png"
+            src="/AutoAgelidis/UTO AGELIDIS-6.png"
             alt="Auto Agelidis"
             width={1200}
-            height={184}
+            height={275}
             transformation={[
-              { x: 900, y: 1320, width: 5220, height: 800, cropMode: "extract" },
+              { x: 3121, y: 1882, width: 1597, height: 366, cropMode: "extract" },
               { width: 1200 },
             ]}
-            className="h-6 w-auto"
+            className="h-8 w-auto"
           />
         </Link>
 
