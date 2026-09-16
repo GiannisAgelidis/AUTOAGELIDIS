@@ -42,6 +42,29 @@
     "hoursValue": "Mon–Fri 09:00–19:00, Sat 09:00–15:00",
     "directions": "Get directions"
   },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Frequently asked questions",
+    "cta": "Ask us directly",
+    "questions": [
+      {
+        "q": "Do your vehicles come with a warranty?",
+        "a": "Yes — every vehicle we sell includes a warranty period. Ask us about the exact coverage for a specific listing."
+      },
+      {
+        "q": "Can I test drive a vehicle before buying?",
+        "a": "Of course. Get in touch to book a test drive at our showroom in Komotini, at a time that works for you."
+      },
+      {
+        "q": "Do you accept trade-ins?",
+        "a": "Yes, we accept trade-ins toward your next vehicle. Bring your current car by and we'll give you a valuation."
+      },
+      {
+        "q": "What do I need to bring to complete a purchase?",
+        "a": "Just your ID and driving license. We'll walk you through the paperwork and transfer of ownership in person."
+      }
+    ]
+  },
   "featured": {
     "eyebrow": "Available now",
     "title": "Recent listings",

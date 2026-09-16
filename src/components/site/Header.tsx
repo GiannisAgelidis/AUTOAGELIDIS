@@ -4,6 +4,7 @@ import { Image as IKImage } from "@imagekit/next";
 import { Link } from "@/i18n/navigation";
 import LocaleSwitcher from "./LocaleSwitcher";
 import MobileNav from "./MobileNav";
+import ScrollLink from "./ScrollLink";
 
 const LANDLINE_DISPLAY = "25310 29470";
 const LANDLINE_HREF = "+302531029470";
@@ -29,15 +30,15 @@ export default async function Header() {
         </Link>
 
         <nav className="hidden items-center gap-9 font-sans text-[11px] uppercase tracking-[0.16em] text-on-ink/70 md:flex">
-          <Link href="/#about" className="nav-link transition-colors hover:text-on-ink">
+          <ScrollLink targetId="about" className="nav-link transition-colors hover:text-on-ink">
             {t("about")}
-          </Link>
+          </ScrollLink>
           <Link href="/vehicles" className="nav-link transition-colors hover:text-on-ink">
             {t("vehicles")}
           </Link>
-          <Link href="/#contact" className="nav-link transition-colors hover:text-on-ink">
+          <ScrollLink targetId="contact" className="nav-link transition-colors hover:text-on-ink">
             {t("contact")}
-          </Link>
+          </ScrollLink>
         </nav>
 
         <div className="flex items-center gap-5">

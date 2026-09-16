@@ -1,6 +1,9 @@
 import { getTranslations } from "next-intl/server";
-import { Video as IKVideo } from "@imagekit/next";
+// ImageKit video import — only needed if the commented-out IKVideo attempt
+// below is re-enabled (currently broken, see the comment at its usage site).
+// import { Video as IKVideo } from "@imagekit/next";
 import { Link } from "@/i18n/navigation";
+import ScrollLink from "./ScrollLink";
 import Tag from "./Tag";
 import { ArrowRightIcon } from "./icons";
 
@@ -20,8 +23,34 @@ export default async function Hero() {
   return (
     <section className="relative overflow-hidden bg-ink text-on-ink">
       <div aria-hidden className="absolute inset-0">
-        <IKVideo
-          src="/AutoAgelidis/5.mp4"
+        {/* ===== ImageKit-hosted 2k.mp4 — DOES NOT WORK, kept for reference ===== */}
+        {/* 2k.mp4 (and 4k.mp4) are HEVC/QuickTime source files, not standard
+            H.264 MP4 — most browsers can't decode HEVC in <video> directly.
+            ImageKit can normally auto-transcode video on delivery via its
+            /ik-video.mp4 path, but that's currently blocked on this account:
+            GET .../2k.mp4/ik-video.mp4 -> 403 "ik-error: ELIMIT - Video
+            transformations limit exceeded". Until the ImageKit plan's video
+            transformation quota is raised (or the source is pre-converted to
+            H.264 MP4 before upload), this will fail with
+            MEDIA_ERR_SRC_NOT_SUPPORTED regardless of hosting. */}
+        {/* <IKVideo
+          src="/AutoAgelidis/2k.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="h-full w-full object-cover"
+        /> */}
+        {/* ===== END ImageKit attempt ===== */}
+
+        {/* ===== ACTIVE: local video from public/video_assets (confirmed working) ===== */}
+        {/* Swap src to "/video_assets/test6_crop.mp4" to compare the other clip.
+            Note: 2k.mp4/4k.mp4 in this same folder are the same HEVC/QuickTime
+            files as above and will NOT play either — only test1_crop.mp4 and
+            test6_crop.mp4 are real H.264 MP4s. */}
+        <video
+          src="/video_assets/2k.mp4"
           autoPlay
           muted
           loop
@@ -29,6 +58,7 @@ export default async function Hero() {
           preload="auto"
           className="h-full w-full object-cover"
         />
+        {/* ===== END ACTIVE ===== */}
         <div className="absolute inset-0 bg-ink/50" />
       </div>
 
@@ -66,12 +96,12 @@ export default async function Hero() {
             {t("cta")}
             <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
-          <Link
-            href="/#contact"
+          <ScrollLink
+            targetId="contact"
             className="inline-flex items-center gap-2 border border-on-ink/30 px-6 py-3.5 font-mono text-xs uppercase tracking-[0.14em] text-on-ink transition-colors hover:border-on-ink"
           >
             {t("ctaSecondary")}
-          </Link>
+          </ScrollLink>
         </div>
 
         <dl
@@ -87,7 +117,7 @@ export default async function Hero() {
                 {s.label}
               </dt>
               <dd className="mt-2 text-xl font-medium tabular-nums text-on-ink">
-                  
+                {s.value}
               </dd>
             </div>
           ))}

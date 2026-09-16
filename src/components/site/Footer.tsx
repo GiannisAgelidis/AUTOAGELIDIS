@@ -1,5 +1,6 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import ScrollLink from "./ScrollLink";
 import { MailIcon, PhoneIcon, InstagramIcon, FacebookIcon, CarIcon } from "./icons";
 
 const EMAIL = "info@autoagelidis.gr";
@@ -64,12 +65,12 @@ export default async function Footer() {
             <Link href="/vehicles" className="text-on-ink/65 transition-colors hover:text-on-ink">
               {tNav("vehicles")}
             </Link>
-            <Link href="/#about" className="text-on-ink/65 transition-colors hover:text-on-ink">
+            <ScrollLink targetId="about" className="text-on-ink/65 transition-colors hover:text-on-ink">
               {tNav("about")}
-            </Link>
-            <Link href="/#contact" className="text-on-ink/65 transition-colors hover:text-on-ink">
+            </ScrollLink>
+            <ScrollLink targetId="contact" className="text-on-ink/65 transition-colors hover:text-on-ink">
               {tNav("contact")}
-            </Link>
+            </ScrollLink>
           </nav>
         </div>
 

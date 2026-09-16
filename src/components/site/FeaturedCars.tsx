@@ -19,7 +19,7 @@ export default async function FeaturedCars() {
   const featured = cars ?? [];
 
   return (
-    <section className="bg-surface-2 text-ink">
+    <section className="bg-paper text-ink">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 py-24">
         <Reveal className="flex flex-wrap items-end justify-between gap-4">
           <div className="flex flex-col gap-4">

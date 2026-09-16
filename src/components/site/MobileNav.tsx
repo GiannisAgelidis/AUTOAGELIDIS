@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import ScrollLink from "./ScrollLink";
 import { MenuIcon, CloseIcon } from "./icons";
 
 export default function MobileNav() {
@@ -30,15 +31,15 @@ export default function MobileNav() {
 
       {open && (
         <nav className="absolute inset-x-0 top-full flex flex-col border-b border-line-dark bg-ink px-6 py-2">
-          <Link href="/#about" onClick={close} className={itemClass}>
+          <ScrollLink targetId="about" onClick={close} className={itemClass}>
             {t("about")}
-          </Link>
+          </ScrollLink>
           <Link href="/vehicles" onClick={close} className={itemClass}>
             {t("vehicles")}
           </Link>
-          <Link href="/#contact" onClick={close} className={itemClass}>
+          <ScrollLink targetId="contact" onClick={close} className={itemClass}>
             {t("contact")}
-          </Link>
+          </ScrollLink>
         </nav>
       )}
     </div>

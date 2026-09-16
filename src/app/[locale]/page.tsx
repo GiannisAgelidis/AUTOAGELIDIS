@@ -3,6 +3,7 @@ import Header from "@/components/site/Header";
 import Hero from "@/components/site/Hero";
 import About from "@/components/site/About";
 import FeaturedCars from "@/components/site/FeaturedCars";
+import Faq from "@/components/site/Faq";
 import Location from "@/components/site/Location";
 import ContactForm from "@/components/site/ContactForm";
 import Footer from "@/components/site/Footer";
@@ -22,8 +23,9 @@ export default async function Home({
         <Hero />
         <About />
         <FeaturedCars />
-        <Location />
+        <Faq />
         <ContactForm />
+        <Location />
       </main>
       <Footer />
     </>
