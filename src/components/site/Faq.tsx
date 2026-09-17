@@ -26,9 +26,9 @@ export default async function Faq() {
       />
       <div aria-hidden className="absolute inset-0 bg-ink/70" />
 
-      <Reveal className="relative mx-auto grid w-full max-w-6xl grid-cols-1 gap-12 px-6 py-24 md:grid-cols-2">
+      <div className="relative mx-auto grid w-full max-w-6xl grid-cols-1 gap-12 px-6 py-24 md:grid-cols-2">
         {/* Mirrors the location section below: image on the left, text on the right. */}
-        <div className="relative order-2 h-full md:order-1">
+        <Reveal direction="left" delay={0} className="relative order-2 h-full md:order-1">
           {/* Soft backlight, matching the map treatment in the location section */}
           <div
             aria-hidden
@@ -48,9 +48,9 @@ export default async function Faq() {
               className="object-cover"
             />
           </div>
-        </div>
+        </Reveal>
 
-        <div className="order-1 flex flex-col gap-6 md:order-2">
+        <Reveal direction="right" delay={200} className="order-1 flex flex-col gap-6 md:order-2">
           <Tag tone="on-ink">{t("eyebrow")}</Tag>
           <h2 className="text-3xl font-normal tracking-[-0.02em] sm:text-4xl">
             {t("title")}
@@ -74,8 +74,8 @@ export default async function Faq() {
             {t("cta")}
             <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </ScrollLink>
-        </div>
-      </Reveal>
+        </Reveal>
+      </div>
     </section>
   );
 }

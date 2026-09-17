@@ -83,24 +83,34 @@ body {
  *  Motion — quiet entrances and micro-interactions (CSS only)
  * ------------------------------------------------------------------ */
 
-@keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.reveal,
+.reveal-left,
+.reveal-right {
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .reveal {
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(20px);
 }
 
-.reveal.is-visible {
-  animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+.reveal.is-visible,
+.reveal-left.is-visible,
+.reveal-right.is-visible {
+  opacity: 1;
+  transform: translate(0, 0);
 }
 
 /* Faint wordmark drift */
@@ -206,10 +216,12 @@ body {
     scroll-behavior: auto;
   }
 
-  .reveal {
+  .reveal,
+  .reveal-left,
+  .reveal-right {
     opacity: 1;
     transform: none;
-    animation: none;
+    transition: none;
   }
 
   .ambient-mark {

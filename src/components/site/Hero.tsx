@@ -64,23 +64,23 @@ export default async function Hero() {
       </div>
 
       <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 pb-24 pt-16 md:pt-28">
-        <Reveal delay={0}>
+        <Reveal mode="timed" delay={0}>
           <Tag tone="on-ink">{t("eyebrow")}</Tag>
         </Reveal>
 
-        <Reveal delay={80}>
+        <Reveal mode="timed" delay={80}>
           <h1 className="max-w-4xl whitespace-pre-line text-[2.75rem] font-normal leading-[1.04] tracking-[-0.03em] sm:text-6xl md:text-[4.5rem]">
             {t("title")}
           </h1>
         </Reveal>
 
-        <Reveal delay={160}>
+        <Reveal mode="timed" delay={160}>
           <p className="max-w-xl text-lg leading-relaxed text-on-ink-dim text-white/70">
             {t("subtitle")}
           </p>
         </Reveal>
 
-        <Reveal delay={240} className="flex flex-wrap items-center gap-3">
+        <Reveal mode="timed" delay={240} className="flex flex-wrap items-center gap-3">
           <Link
             href="/cars"
             className="group inline-flex items-center gap-2 bg-on-ink px-6 py-3.5 font-mono text-xs uppercase tracking-[0.14em] text-ink transition-colors hover:bg-on-ink-dim"
@@ -96,7 +96,7 @@ export default async function Hero() {
           </ScrollLink>
         </Reveal>
 
-        <Reveal delay={320}>
+        <Reveal mode="timed" delay={320}>
           <dl className="mt-6 grid max-w-2xl grid-cols-1 border-t border-line-dark font-mono sm:grid-cols-3 sm:divide-x sm:divide-line-dark">
             {stats.map((s) => (
               <div

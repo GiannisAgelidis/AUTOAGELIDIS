@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { Image as IKImage } from "@imagekit/next";
 import { Link } from "@/i18n/navigation";
 import LocaleSwitcher from "./LocaleSwitcher";
+import LogoLink from "./LogoLink";
 import MobileNav from "./MobileNav";
 import ScrollLink from "./ScrollLink";
 
@@ -15,7 +16,7 @@ export default async function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-line-dark bg-ink text-on-ink  ">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-6 px-6 py-3">
-        <Link href="/" className="flex shrink-0 items-center" aria-label="Auto Agelidis">
+        <LogoLink className="flex shrink-0 items-center" ariaLabel="Auto Agelidis">
           <IKImage
             src="/AutoAgelidis/UTO AGELIDIS-6.png"
             alt="Auto Agelidis"
@@ -27,7 +28,7 @@ export default async function Header() {
             ]}
             className="h-8 w-auto"
           />
-        </Link>
+        </LogoLink>
 
         <nav className="hidden items-center gap-9 font-sans text-[11px] uppercase tracking-[0.16em] text-on-ink/70 md:flex">
           <ScrollLink targetId="about" className="nav-link transition-colors hover:text-on-ink">

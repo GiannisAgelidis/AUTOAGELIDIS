@@ -36,8 +36,8 @@ export default async function Location() {
 
   return (
     <section id="location" className="relative overflow-hidden bg-ink text-on-ink">
-      <Reveal className="relative mx-auto grid w-full max-w-6xl grid-cols-1 gap-12 px-6 py-24 md:grid-cols-2">
-        <div className="flex flex-col gap-6">
+      <div className="relative mx-auto grid w-full max-w-6xl grid-cols-1 gap-12 px-6 py-24 md:grid-cols-2">
+        <Reveal direction="left" delay={0} className="flex flex-col gap-6">
           <Tag tone="on-ink">{t("eyebrow")}</Tag>
           <h2 className="text-3xl font-normal tracking-[-0.02em] sm:text-4xl">
             {t("title")}
@@ -63,9 +63,9 @@ export default async function Location() {
             {t("directions")}
             <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </a>
-        </div>
+        </Reveal>
 
-        <div className="relative">
+        <Reveal direction="right" delay={200} className="relative">
           {/* Soft backlight bleeding out from behind the map */}
           <div
             aria-hidden
@@ -87,8 +87,8 @@ export default async function Location() {
               referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
-        </div>
-      </Reveal>
+        </Reveal>
+      </div>
     </section>
   );
 }
